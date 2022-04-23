@@ -21,7 +21,7 @@ else:
 
 file = f"D:\\download\\{file_name}"
 
-# Read the csv
+# Read the csv and extract wanted data
 
 with open(f"{file}", 'r') as product_list:
     csv_dict_reader = csv.DictReader(product_list)
@@ -30,7 +30,7 @@ with open(f"{file}", 'r') as product_list:
         items.append(row['Product'] + ' ' + row['Manufacturer'])
 
 
-        
-#for row in csv_dict_reader:
-#    browser.get('https://www.google.com/search?q=' + "test")
-    
+i = 0
+while i < len(items):
+    browser.get('https://www.google.com/search?q=' + f"{items[i]}")
+    i = i + 1 
