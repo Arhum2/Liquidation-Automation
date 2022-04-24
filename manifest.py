@@ -28,7 +28,7 @@ with open(f"{file}", 'r') as product_list:
     for row in csv_dict_reader:
         items.append(row['Product'] + ' ' + row['Manufacturer'])
 
-# use a while loop to parse the list and google search each product in a new tab
+# used a while loop to parse the list and google search each product in a new tab
 
 i = 0
 while i < len(items):
