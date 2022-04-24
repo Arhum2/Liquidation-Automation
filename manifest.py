@@ -2,7 +2,6 @@ import csv
 import sys
 import pyperclip
 from selenium import webdriver
-# m16217884
 PATH = 'C:\Program Files (x86)\chromedriver.exe'
 browser = webdriver.Chrome(PATH)
 search = '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input'
@@ -29,8 +28,10 @@ with open(f"{file}", 'r') as product_list:
     for row in csv_dict_reader:
         items.append(row['Product'] + ' ' + row['Manufacturer'])
 
+# use a while loop to parse the list and google search each product in a new tab
 
 i = 0
 while i < len(items):
     browser.get('https://www.google.com/search?q=' + f"{items[i]}")
-    i = i + 1 
+    browser.switch_to.new_window()
+    i = i + 1

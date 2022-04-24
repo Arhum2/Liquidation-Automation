@@ -1,2 +1,2 @@
-@py C:\Users\pokem\Desktop\code\scripts\manifest.py %*
+@py C:\FILE_PATH\manifest.py %*
 @pause
