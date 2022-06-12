@@ -12,6 +12,8 @@ if len(sys.argv) > 1:
     file_name = ''.join(sys.argv[1:]) + ".csv"
     #print(file_name)
 
+# checking for manifest name on clipboard
+
 else:
     file_name = ''.join(pyperclip.paste()) + ".csv"
     #print(file_name)
@@ -28,10 +30,14 @@ with open(f"{file}", 'r') as product_list:
     for row in csv_dict_reader:
         items.append(row['Product'] + ' ' + row['Manufacturer'])
 
-# used a while loop to parse the list and google search each product in a new tab
+# While loop to parse the list and google search each product in a new tab
+
+length = len(items)
 
 i = 0
-while i < len(items):
+while i <= length:
     browser.get('https://www.google.com/search?q=' + f"{items[i]}")
-    browser.switch_to.new_window()
     i = i + 1
+    browser.switch_to.new_window()
+    if i == items:
+        break
