@@ -4,7 +4,6 @@ import pyperclip
 from selenium import webdriver
 PATH = 'C:\Program Files (x86)\chromedriver.exe'
 browser = webdriver.Chrome(PATH)
-search = '/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input'
 
 # check for command line arguments
 
