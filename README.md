@@ -1,13 +1,4 @@
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
@@ -15,12 +6,13 @@
     <img src="https://user-images.githubusercontent.com/82200170/183231685-baf5e7c1-6d57-4c4d-9aa8-bba81d35b7d3.png">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Liquidity services manifest web scrapper</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    By Arhum Shahzad
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <br />
+    <a>This project takes manifests from Liquidity Services and uses Slenium to scrape and look up items for auction. This makes it 60 times faster and more efficient to source products compared to manually researching items in a manifest.</a>
     <br />
     <br />
     <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
