@@ -12,14 +12,15 @@
     By Arhum Shahzad
     <br />
     <br />
-    <a>This project takes manifests from Liquidity Services and uses Slenium to scrape and look up items for auction. This makes it 60 times faster and more efficient to source products compared to manually researching items in a manifest.</a>
+    <a>This project takes manifests from Liquidity Services and uses Python and Slenium to scrape and look up items for auction. searching for items in a manifest, making it faster to source products and record data Improved product research and data compiling from 15 minutes to 1 minute per manifest.
+</a>
     <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="#usage">View Demo</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/Arhum2/Manifest-Scrapper/issues">Report Bug</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/Arhum2/Manifest-Scrapper/pulls">Request Feature</a>
   </p>
 </div>
 
