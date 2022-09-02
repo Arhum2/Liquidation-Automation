@@ -12,7 +12,9 @@
     By Arhum Shahzad
     <br />
     <br />
-    <a>This project takes manifests from Liquidity Services and uses Python and Slenium to scrape and look up items for auction. searching for items in a manifest, making it faster to source products and record data Improved product research and data compiling from 15 minutes to 1 minute per manifest.
+    <a>This project takes manifests from Liquidity Services and uses Python and Slenium to scrape and look up items for auction. searching for items in a manifest, making it faster to source products and record data Improved product research and data compiling from 15 minutes to 1 minute per manifest. 
+
+
 </a>
     <br />
     <br />
@@ -23,8 +25,6 @@
     <a href="https://github.com/Arhum2/Manifest-Scrapper/pulls">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -51,35 +51,23 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 ![Image-1](https://user-images.githubusercontent.com/82200170/188043942-de4e5a6d-9d2d-41b4-9a2a-12a8f6d65d6b.jpg)
 
-After sourcings furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE) I realized a majority of my time was consumed manually looking up and researching products in a manifest.
+After sourcings furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE)  I realized most of my time was consumed manually by looking up and researching products in a manifest. After spending some time learning Python automation I expanded my knowledge to this project. Manifest Scrapper parses through a .csv file and looks up each product listed in a Liquidity Services manifest.
 
-<br></br>
 
-Here's why I created this project:
+### Here's why I created this project:
 * Improved product research and data compiling allowing for less time to be iinvested with the same return
 * You shouldn't be doing the same tasks over and over
 * implements DRY principles to my business
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 ### Built With
 
 * [Python](https://www.python.org/)
 * [Selenium](https://www.selenium.dev/)
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ### Prerequisites
 
@@ -100,10 +88,7 @@ Here's why I created this project:
 3. Change line 1 in manifest.bat to your manifest.py file path
    ```js
    @py C:\FILE_PATH\manifest.py %*
-   ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+   ``` <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- USAGE EXAMPLES -->
@@ -112,10 +97,8 @@ Here's why I created this project:
 Here is a full demo of Manifest Scrapper taking in user input (the name of the manisfest file) and rapidly looking up each product. 
 
 
-https://user-images.githubusercontent.com/82200170/187813623-06efb504-6ee3-4f81-b96d-9f58791b8004.mp4
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+https://user-images.githubusercontent.com/82200170/187813623-06efb504-6ee3-4f81-b96d-9f58791b8004.mp4 
+<p align="right">(<a href="#readme-top">back to top</a>) </p>
 
 
 <!-- CONTRIBUTING -->
@@ -130,25 +113,14 @@ Don't forget to give the project a star! Thanks again!
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+5. Open a Pull Request <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
+Distributed under the MIT License. See `LICENSE.txt` for more information. <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
 
-Email - Arhumshahzad2003@gmail.com
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Email - Arhumshahzad2003@gmail.com <p align="right">(<a href="#readme-top">back to top</a>)</p>
