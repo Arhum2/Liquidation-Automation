@@ -89,18 +89,17 @@ Here's why I created this project:
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/Arhum2/Manifest-Scrapper.git
    ```
-3. Install NPM packages
+2. Change `PATH` in manifest.py to your chromedriver.exe file path
    ```sh
-   npm install
+   PATH = 'ENTER chromedriver.exe FILE PATH HERE'
    ```
-4. Enter your API in `config.js`
+3. Change line 1 in manifest.bat to your manifest.py file path
    ```js
-   const API_KEY = 'ENTER YOUR API';
+   @py C:\FILE_PATH\manifest.py %*
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
