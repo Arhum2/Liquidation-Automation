@@ -89,7 +89,7 @@ Here's why I created this project:
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repository
    ```sh
    git clone https://github.com/Arhum2/Manifest-Scrapper.git
    ```
@@ -112,32 +112,10 @@ Here's why I created this project:
 Here is a full demo of Manifest Scrapper taking in user input (the name of the manisfest file) and rapidly looking up each product. 
 
 
-
 https://user-images.githubusercontent.com/82200170/187813623-06efb504-6ee3-4f81-b96d-9f58791b8004.mp4
 
 
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- CONTRIBUTING -->
