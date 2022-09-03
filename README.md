@@ -56,11 +56,11 @@
 
 ![Image-1](https://user-images.githubusercontent.com/82200170/188043942-de4e5a6d-9d2d-41b4-9a2a-12a8f6d65d6b.jpg)
 
-After sourcings furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE)  I realized most of my time was consumed manually by looking up and researching products in a manifest. After spending some time learning Python automation I expanded my knowledge to this project. Manifest Scrapper parses through a .csv file and looks up each product listed in a Liquidity Services manifest.
+After sourcings furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE)  I realized most of my time was consumed manually by looking up and researching products in a manifest. After spending some time learning Python automation I expanded my knowledge to this project. Manifest Scrapper parses through a .CSV file and looks up each product listed in a Liquidity Services manifest.
 
 
 ### Here's why I created this project:
-* Improved product research and data compiling allowing for less time to be iinvested with the same return
+* Improved product research and data compiling allowing for less time to be invested with the same return
 * You shouldn't be doing the same tasks over and over
 * implements DRY principles to my business
 
