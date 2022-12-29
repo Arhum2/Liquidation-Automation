@@ -8,6 +8,7 @@ import requests
 import os
 
 email = os.getenv("EMAIL")
+password = os.getenv("PASSWORD")
 path = os.getenv('PATH')
 # file_name = 'm16327655' test
 browser = webdriver.Chrome(path)
@@ -53,8 +54,14 @@ while i < (len(items)):
     else:
         browser.switch_to.new_window()
         browser.get('https://www.facebook.com/')
-        email = browser.find_element(By.XPATH, '//*[@id="email"]')
-        email.send_keys()
+        email_field = browser.find_element(By.XPATH, '//*[@id="email"]')
+        email_field.send_keys(email)
+        sleep(2)
+        password_field = browser.find_element(By.XPATH, '//*[@id="pass"]')
+        password_field.send_keys(password)
+        log_in = browser.find_element(By.XPATH, '//*[@id="u_0_5_Uj"]')
+        log_in.click()
+
         sleep(300)
 
     browser.switch_to.new_window()
