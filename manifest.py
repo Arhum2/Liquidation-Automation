@@ -2,41 +2,65 @@ import csv
 import sys
 import pyperclip
 from selenium import webdriver
-PATH = 'C:\Program Files (x86)\chromedriver.exe'
-browser = webdriver.Chrome(PATH)
+from time import sleep
+from selenium.webdriver.common.by import By
+import requests
+import os
 
+email = os.getenv("EMAIL")
+path = os.getenv('PATH')
+# file_name = 'm16327655' test
+browser = webdriver.Chrome(path)
 # check for command line arguments
 
 if len(sys.argv) > 1:
+
     file_name = ''.join(sys.argv[1:]) + ".csv"
-    #print(file_name)
 
 # checking for manifest name on clipboard
 
 else:
     file_name = ''.join(pyperclip.paste()) + ".csv"
-    #print(file_name)
 
 # assigning .csv file path
 
-file = f"D:\\download\\{file_name}"
+file = f"D:\download\{file_name}"
 
 # Read the csv and extract wanted data
 
 with open(f"{file}", 'r') as product_list:
     csv_dict_reader = csv.DictReader(product_list)
-    items = []
+    items = [] 
+    upc = []
     for row in csv_dict_reader:
         items.append(row['Product'] + ' ' + row['Manufacturer'])
+        upc.append(row['UPC'])
 
 # While loop to parse the list and google search each product in a new tab
-
-length = len(items)
+upc_not_found = []
 
 i = 0
-while i <= length:
+while i < (len(items)):
+    current_upc = upc[i]
     browser.get('https://www.google.com/search?q=' + f"{items[i]}")
-    i = i + 1
+    response = requests.get(f"https://api.upcitemdb.com/prod/trial/lookup?upc={current_upc}")
+    sleep(10)
+    data = response.json()
+
+    if data['code'] == "INVALID_QUERY" or data['code'] == "INVALID_UPC" or data['total'] == 0:
+        upc_not_found.append(items[i])
+    
+    else:
+        browser.switch_to.new_window()
+        browser.get('https://www.facebook.com/')
+        email = browser.find_element(By.XPATH, '//*[@id="email"]')
+        email.send_keys()
+        sleep(300)
+
     browser.switch_to.new_window()
+    
+    
+    i += 1
     if i == items:
         break
+
