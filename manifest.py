@@ -54,12 +54,10 @@ while i < (len(items)):
     else:
         browser.switch_to.new_window()
         browser.get('https://www.facebook.com/')
-        email_field = browser.find_element(By.XPATH, '//*[@id="email"]')
-        email_field.send_keys(email)
+        email_field = browser.find_element(By.XPATH, '//*[@id="email"]').send_keys(email)
         sleep(2)
-        password_field = browser.find_element(By.XPATH, '//*[@id="pass"]')
-        password_field.send_keys(password)
-        log_in = browser.find_element(By.XPATH, '//*[@id="u_0_5_Uj"]')
+        password_field = browser.find_element(By.XPATH, '//*[@id="pass"]').send_keys(password)
+        log_in = browser.find_element(By.NAME, "login")
         log_in.click()
 
         sleep(300)
