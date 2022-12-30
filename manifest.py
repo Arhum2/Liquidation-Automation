@@ -4,6 +4,7 @@ import pyperclip
 from selenium import webdriver
 from time import sleep
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
 import requests
 import os
 
@@ -59,6 +60,7 @@ while i < (len(items)):
         password_field = browser.find_element(By.XPATH, '//*[@id="pass"]').send_keys(password)
         log_in = browser.find_element(By.NAME, "login")
         log_in.click()
+        sleep(10)
 
         sleep(300)
 
