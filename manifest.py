@@ -46,7 +46,7 @@ while i < (len(items)):
     current_upc = upc[i]
     browser.get('https://www.google.com/search?q=' + f"{items[i]}")
     response = requests.get(f"https://api.upcitemdb.com/prod/trial/lookup?upc={current_upc}")
-    sleep(10)
+    sleep(1)
     data = response.json()
 
     if data['code'] == "INVALID_QUERY" or data['code'] == "INVALID_UPC" or data['total'] == 0:
@@ -56,11 +56,11 @@ while i < (len(items)):
         browser.switch_to.new_window()
         browser.get('https://www.facebook.com/')
         email_field = browser.find_element(By.XPATH, '//*[@id="email"]').send_keys(email)
-        sleep(2)
         password_field = browser.find_element(By.XPATH, '//*[@id="pass"]').send_keys(password)
         log_in = browser.find_element(By.NAME, "login")
         log_in.click()
-        sleep(10)
+        mktp_button = browser.find_element_by_xpath('//a[@href="/marketplace/?ref=app_tab"]').click()
+        new_listing = browser.find_element_by_xpath('//a[@href="/marketplace/create/"]').click()
 
         sleep(300)
 
