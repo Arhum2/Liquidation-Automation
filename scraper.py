@@ -2,18 +2,19 @@ import csv
 import sys
 import pyperclip
 from selenium import webdriver
-import os
+from selenium.webdriver.chrome.service import Service
 
-path = os.getenv('PATH')
-browser = webdriver.Chrome(path)
+PATH = 'C:\\Users\\pokem\\Desktop'
 
-# check for command line arguments
+driver_service = Service(executable_path=PATH)
+browser = webdriver.Chrome(service=driver_service)# check for command line arguments
 
 if len(sys.argv) > 1:
     file_name = ''.join(sys.argv[1:]) + ".csv"
     #print(file_name)
 
 # checking for manifest name on clipboard
+#m17097964
 
 else:
     file_name = ''.join(pyperclip.paste()) + ".csv"
