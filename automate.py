@@ -1,21 +1,25 @@
-from selenium import webdriver
+import selenium.webdriver as webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
+import os
+from time import sleep
+
+chrome_service = Service(executable_path="C:\\Program Files (x86)\\chromedriver.exe")
+
+chrome_options = Options()
+chrome_options.add_argument('--user-data-dir=C:\\Users\\pokem\\AppData\\Local\\Google\\Chrome\\User Data')
+chrome_options.add_argument('--profile-directory=Profile 3')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--remote-debugging-port=9222')
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--disable-extensions')
+chrome_options.add_argument('--disable-infobars')
 
 
-#windows
-#And make sure we can find the profile we have just created.
+browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
+browser.get('https://www.facebook.com')
 
-#mac
-#/Users/arhumshahzad/Library/Application Support/Google/Chrome/Default
-options = Options()
-options.page_load_strategy = 'normal'
-
-options.add_argument("user-data-dir=/Users/arhumshahzad/Library/Application Support/Google/Chrome/User Data")
-
-driver = webdriver.Chrome(options=options)
-driver = webdriver.Chrome()
-driver.implicitly_wait(1000)
-driver.get('https://www.youtube.com')
-driver.find_element(By.ID, "input").send_keys('whats good')
+sleep(5)
 
