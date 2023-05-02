@@ -19,7 +19,8 @@ chrome_options.add_argument('--disable-infobars')
 #Navigating to selling folder
 
 os.chdir('G:\\My Drive\\selling\\test')
-x = len(os.listdir)()
+ads = os.listdir()
+number_of_adds = len(ads)
 
 #Automate class and script
 class automate_add_post:
@@ -29,11 +30,12 @@ class automate_add_post:
     photo button: add photos button
     """
 
-    def __init__(self) -> None:
+    def __init__(self, c_file) -> None:
         self.browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
         self.post = 'https://www.facebook.com/marketplace/create/item'
         self.photo_button = None
         self.title_button = None
+        self.file_dir = c_file
 
     def automate(self):
         self.browser.get(self.post)
@@ -41,7 +43,11 @@ class automate_add_post:
         self.title_button.send_keys('test')
         self.photo_button.send_keys(os.getcwd() + '\\test.jpg')
 
-a = automate_add_post()
-a.automate()
+for i in range(number_of_adds):
+    curr_file = ads[i]
+    a = automate_add_post(f'{os.curdir}\\{curr_file}')
+    x = 1+1
+    a.automate()
+
 sleep(10000)
 
