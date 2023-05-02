@@ -14,15 +14,34 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--remote-debugging-port=9222')
 chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--disable-extensions')
 chrome_options.add_argument('--disable-infobars')
 
+#Navigating to selling folder
 
-browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
-browser.get('https://www.facebook.com/marketplace/create/item')
-sleep(5)
-browser.find_element(By.XPATH, ("//span[text()='Add Photos']")).click()
-sleep(5)
+os.chdir('G:\\My Drive\\selling\\test')
+x = len(os.listdir)()
 
+#Automate class and script
+class automate_add_post:
+    """
+    browser: chrome browser
+    post: facebook add post screen
+    photo button: add photos button
+    """
+
+    def __init__(self) -> None:
+        self.browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
+        self.post = 'https://www.facebook.com/marketplace/create/item'
+        self.photo_button = None
+        self.title_button = None
+
+    def automate(self):
+        self.browser.get(self.post)
+        self.photo_button = self.browser.find_element(By.XPATH, ("//span[text()='Add Photos']"))
+        self.title_button.send_keys('test')
+        self.photo_button.send_keys(os.getcwd() + '\\test.jpg')
+
+a = automate_add_post()
+a.automate()
 sleep(10000)
 
