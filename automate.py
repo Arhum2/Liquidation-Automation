@@ -4,6 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import os
 from time import sleep
+import pyautogui
 
 chrome_service = Service(executable_path="C:\\Program Files (x86)\\chromedriver.exe")
 
@@ -30,24 +31,45 @@ class automate_add_post:
     photo button: add photos button
     """
 
-    def __init__(self, c_file) -> None:
+    def __init__(self, c_file,) -> None:
+        self.abs_path = 'G:\\My Drive\\selling\\test\\'
         self.browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
         self.post = 'https://www.facebook.com/marketplace/create/item'
-        self.photo_button = None
+        self.photo_button = "//span[text()='Add Photos']"
         self.title_button = None
         self.file_dir = c_file
 
+
     def automate(self):
         self.browser.get(self.post)
-        self.photo_button = self.browser.find_element(By.XPATH, ("//span[text()='Add Photos']"))
-        self.title_button.send_keys('test')
-        self.photo_button.send_keys(os.getcwd() + '\\test.jpg')
+
+        self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
+        self.photo_button.click()
+
+        #mutating directory
+        self.file_dir = self.file_dir.strip('.')
+        self.file_dir = self.file_dir.strip('\\')
+        self.file_dir = self.file_dir + '\\photo'
+
+        #navigating to photo folder and uploading all photos
+        pyautogui.write(self.abs_path)
+        pyautogui.press('enter')
+        pyautogui.write(self.file_dir)
+        pyautogui.press('enter')
+        pyautogui.press('enter')
+        pyautogui.moveTo(200, 200)
+        pyautogui.click()
+        pyautogui.hotkey('ctrl', 'a')
+        pyautogui.press('enter')
+
+
 
 for i in range(number_of_adds):
     curr_file = ads[i]
     a = automate_add_post(f'{os.curdir}\\{curr_file}')
-    x = 1+1
     a.automate()
+
+
 
 sleep(10000)
 
