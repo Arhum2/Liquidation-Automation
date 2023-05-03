@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 import os
 from time import sleep
 import pyautogui
+from selenium.webdriver.common.keys import Keys
 
 chrome_service = Service(executable_path="C:\\Program Files (x86)\\chromedriver.exe")
 
@@ -85,6 +86,7 @@ class automate_add_post:
 
         #Filling photo field
         self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
+        sleep(3)
         # self.photo_button.click()
 
         # #mutating directory
@@ -133,7 +135,9 @@ class automate_add_post:
         self.description.send_keys(info['Description'])
 
         self.tags = self.browser.find_element(By.XPATH, (self.tags))
-        self.tags.send_keys()
+        for tag in info['Tags']:
+            self.tags.send_keys(tag)
+            self.tags.send_keys(Keys.ENTER)
 
 
 
