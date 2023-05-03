@@ -52,6 +52,7 @@ class automate_add_post:
         self.color = '//*[@id=":r1v:"]'
         self.description = '//*[@id=":r18:"]'
         self.tags = '//*[@id=":r1e:"]'
+        self.done = '//span[text()="Save draft"]'
 
     def get_info(self) -> dict:
 
@@ -87,29 +88,32 @@ class automate_add_post:
         #Filling photo field
         self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
         sleep(3)
-        # self.photo_button.click()
+        self.photo_button.click()
 
-        # #mutating directory
-        # self.file_dir = self.file_dir.strip('.')
-        # self.file_dir = self.file_dir.strip('\\')
-        # self.file_dir = self.file_dir + '\\photo'
+        #mutating directory
+        self.file_dir = self.file_dir.strip('.')
+        self.file_dir = self.file_dir.strip('\\')
+        self.file_dir = self.file_dir + '\\photo'
 
-        # #navigating to photo folder and uploading all photos
-        # pyautogui.write(self.abs_path)
-        # pyautogui.press('enter')
-        # pyautogui.write(self.file_dir)
-        # pyautogui.press('enter')
-        # pyautogui.press('enter')
-        # sleep(2)
-        # pyautogui.moveTo(300, 200)
-        # pyautogui.click()
-        # pyautogui.hotkey('ctrl', 'a')
-        # pyautogui.press('enter')
+        #navigating to photo folder and uploading all photos
+        pyautogui.write(self.abs_path)
+        sleep(2)
+        pyautogui.press('enter')
+        pyautogui.write(self.file_dir)
+        sleep(2)
+        pyautogui.press('enter')
+        sleep(2)
+        pyautogui.moveTo(300, 200)
+        pyautogui.click()
+        pyautogui.hotkey('ctrl', 'a')
+        pyautogui.press('enter')
+        sleep(2)
 
         #Filling text fields
-        info = self.get_info()
 
-        self.file_dir = self.file_dir.strip('\\photo') #Resetting file_dir
+        self.file_dir = self.file_dir.strip('photo') #Resetting file_dir
+
+        info = self.get_info()
 
         self.title_button = self.browser.find_element(By.XPATH, (self.title_button))
         self.title_button.send_keys(info['Title'])
@@ -139,6 +143,9 @@ class automate_add_post:
             self.tags.send_keys(tag)
             self.tags.send_keys(Keys.ENTER)
 
+        self.done = self.browser.find_element(By.XPATH, (self.done))
+        self.done.click()
+        sleep(1000)
 
 
 
