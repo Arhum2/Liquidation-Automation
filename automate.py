@@ -47,6 +47,10 @@ class automate_add_post:
         self.category_furniture = "//span[text()='Furniture']"
         self.condition_drop = '//*[@id=":r15:"]/div'
         self.condition_new = '//*[@id=":r13:__0"]/div[1]/div/div/span'
+        self.brand = '//*[@id=":r21:"]'
+        self.color = '//*[@id=":r1v:"]'
+        self.description = '//*[@id=":r18:"]'
+        self.tags = '//*[@id=":r1e:"]'
 
     def get_info(self) -> dict:
 
@@ -59,35 +63,46 @@ class automate_add_post:
             for line in info:
                 temp.append(line)
 
+        #{Tags: [list of tags]}
         for line in temp:
             curr_line = line.split(':')
-            result[curr_line[0]] = curr_line[1].strip()
+            if curr_line[0] == 'Tags':
+                result[curr_line[0]] = None
+                x = curr_line[1].split(',')
+                for item in x:
+                    if result[curr_line[0]] is not None:
+                        result[curr_line[0]].append(item.strip())
+                    else:
+                        result[curr_line[0]] = []
+                        result[curr_line[0]].append(item.strip())
+            else:
+                result[curr_line[0]] = curr_line[1].strip()
         
         return result
-
+    
     def automate(self):
         self.browser.get(self.post)
 
         #Filling photo field
         self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
-        self.photo_button.click()
+        # self.photo_button.click()
 
-        #mutating directory
-        self.file_dir = self.file_dir.strip('.')
-        self.file_dir = self.file_dir.strip('\\')
-        self.file_dir = self.file_dir + '\\photo'
+        # #mutating directory
+        # self.file_dir = self.file_dir.strip('.')
+        # self.file_dir = self.file_dir.strip('\\')
+        # self.file_dir = self.file_dir + '\\photo'
 
-        #navigating to photo folder and uploading all photos
-        pyautogui.write(self.abs_path)
-        pyautogui.press('enter')
-        pyautogui.write(self.file_dir)
-        pyautogui.press('enter')
-        pyautogui.press('enter')
-        sleep(2)
-        pyautogui.moveTo(300, 200)
-        pyautogui.click()
-        pyautogui.hotkey('ctrl', 'a')
-        pyautogui.press('enter')
+        # #navigating to photo folder and uploading all photos
+        # pyautogui.write(self.abs_path)
+        # pyautogui.press('enter')
+        # pyautogui.write(self.file_dir)
+        # pyautogui.press('enter')
+        # pyautogui.press('enter')
+        # sleep(2)
+        # pyautogui.moveTo(300, 200)
+        # pyautogui.click()
+        # pyautogui.hotkey('ctrl', 'a')
+        # pyautogui.press('enter')
 
         #Filling text fields
         info = self.get_info()
@@ -106,7 +121,21 @@ class automate_add_post:
 
         self.condition_drop = self.browser.find_element(By.XPATH, self.condition_drop).click()
         self.condition_new = self.browser.find_element(By.XPATH, self.condition_new).click()
+
+        self.brand = self.browser.find_element(By.XPATH, self.brand)
+        self.brand.send_keys(info['Brand'])
         
+        if info['Color']:
+            self.color = self.browser.find_element(By.XPATH, (self.color))
+            self.color.send_keys(info['Color'])
+
+        self.description = self.browser.find_element(By.XPATH, (self.description))
+        self.description.send_keys(info['Description'])
+
+        self.tags = self.browser.find_element(By.XPATH, (self.tags))
+        self.tags.send_keys()
+
+
 
 
 
