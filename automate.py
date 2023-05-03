@@ -32,17 +32,43 @@ class automate_add_post:
     """
 
     def __init__(self, c_file,) -> None:
-        self.abs_path = 'G:\\My Drive\\selling\\test\\'
+
+        #Setting up browser, File paths, etc
         self.browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
+        self.abs_path = 'G:\\My Drive\\selling\\test\\'
         self.post = 'https://www.facebook.com/marketplace/create/item'
-        self.photo_button = "//span[text()='Add Photos']"
-        self.title_button = None
         self.file_dir = c_file
 
+        #Setting up XPATHs
+        self.photo_button = "//span[text()='Add Photos']"
+        self.title_button = '//*[@id=":rt:"]'
+        self.price_button = '//*[@id=":rv:"]'
+        self.category_drop = '//*[@id=":r11:"]/div'
+        self.category_furniture = "//span[text()='Furniture']"
+        self.condition_drop = '//*[@id=":r15:"]/div'
+        self.condition_new = '//*[@id=":r13:__0"]/div[1]/div/div/span'
+
+    def get_info(self) -> dict:
+
+        x = self.abs_path + self.file_dir + '\\info.txt'
+        temp = []
+        result = {}
+
+        with open(x, 'r') as txt:
+            info = txt.readlines()
+            for line in info:
+                temp.append(line)
+
+        for line in temp:
+            curr_line = line.split(':')
+            result[curr_line[0]] = curr_line[1].strip()
+        
+        return result
 
     def automate(self):
         self.browser.get(self.post)
 
+        #Filling photo field
         self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
         self.photo_button.click()
 
@@ -57,10 +83,30 @@ class automate_add_post:
         pyautogui.write(self.file_dir)
         pyautogui.press('enter')
         pyautogui.press('enter')
-        pyautogui.moveTo(200, 200)
+        sleep(2)
+        pyautogui.moveTo(300, 200)
         pyautogui.click()
         pyautogui.hotkey('ctrl', 'a')
         pyautogui.press('enter')
+
+        #Filling text fields
+        info = self.get_info()
+
+        self.file_dir = self.file_dir.strip('\\photo') #Resetting file_dir
+
+        self.title_button = self.browser.find_element(By.XPATH, (self.title_button))
+        self.title_button.send_keys(info['Title'])
+
+        self.price_button = self.browser.find_element(By.XPATH, (self.price_button))
+        self.price_button.send_keys(info['Price'])
+
+        #Drop down properties
+        self.category_drop = self.browser.find_element(By.XPATH, self.category_drop).click() #reassigning selfs vars to the found element, probably not gonna be used again but good to have
+        self.category_furniture = self.browser.find_element(By.XPATH, self.category_furniture).click()
+
+        self.condition_drop = self.browser.find_element(By.XPATH, self.condition_drop).click()
+        self.condition_new = self.browser.find_element(By.XPATH, self.condition_new).click()
+        
 
 
 
