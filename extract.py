@@ -27,8 +27,8 @@ class Extract:
 
     def __init__(self, link) -> None:
         self.link = link
-        uc.TARGET_VERSION = 112
-        self.browser = uc.Chrome(options=chrome_options)
+
+        self.browser = uc.Chrome(options=chrome_options, version_main=112)
 
     def extract_info(self):
         self.browser.get(self.link)
