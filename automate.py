@@ -91,15 +91,15 @@ class Automate_add_post:
         self.photo_button.click()
 
         #mutating directory
-        self.file_dir = self.file_dir.strip('.')
-        self.file_dir = self.file_dir.strip('\\')
-        self.file_dir = self.file_dir + '\\photo'
+        photo_directory = self.file_dir.strip('.')
+        photo_directory = photo_directory('\\')
+        photo_directory = photo_directory + '\\photo'
 
         #navigating to photo folder and uploading all photos
         pyautogui.write(self.abs_path)
         sleep(2)
         pyautogui.press('enter')
-        pyautogui.write(self.file_dir)
+        pyautogui.write(photo_directory)
         sleep(2)
         pyautogui.press('enter')
         sleep(2)
@@ -110,8 +110,6 @@ class Automate_add_post:
         sleep(2)
 
         #Filling text fields
-
-        self.file_dir = self.file_dir.strip('photo') #Resetting file_dir
 
         info = self.get_info()
 
