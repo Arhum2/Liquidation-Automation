@@ -25,7 +25,7 @@ ads = os.listdir()
 number_of_adds = len(ads)
 
 #Automate class and script
-class automate_add_post:
+class Automate_add_post:
     """
     browser: chrome browser
     post: facebook add post screen
@@ -152,10 +152,6 @@ class automate_add_post:
 
 for i in range(number_of_adds):
     curr_file = ads[i]
-    a = automate_add_post(f'{os.curdir}\\{curr_file}')
+    a = Automate_add_post(f'{os.curdir}\\{curr_file}')
     a.automate()
-
-
-
-sleep(10000)
-
+    sleep(30)
