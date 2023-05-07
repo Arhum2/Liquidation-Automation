@@ -20,8 +20,9 @@ chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--disable-infobars')
 
 #Navigating to selling folder
-
 os.chdir('G:\\My Drive\\selling\\test')
+
+
 
 class Extract:
 
@@ -37,6 +38,20 @@ class Extract:
 
         self.browser = uc.Chrome(options=chrome_options, version_main=112)
 
+    def make_dir(self):
+        curr_dir = os.getcwd()
+        wrong_lst = ['<', '>', ':', '"', '/', '\\', '|', '?', '*']
+        title = self.title.strip()
+
+        for char in title:
+            if char in wrong_lst:
+                title = title.strip(char)
+
+        dir_path = f'{curr_dir}\\{title}'
+
+        os.makedirs(title)
+        os.chdir(dir_path)
+    
     def extract_info(self):
         self.browser.get(self.link)
         self.title = self.browser.find_element(By.TAG_NAME, self.title)
@@ -54,14 +69,22 @@ class Extract:
         self.dimensions_button = self.browser.find_element(By.XPATH, self.dimensions_button)
         self.dimensions_button.click()
 
-        self.dimensions = self.browser.find_element(By.XPATH, self)
-        pass
-        
-        sleep(10000)
+        self.dimensions = self.browser.find_element(By.XPATH, self.dimensions)
+        self.dimensions = self.dimensions.text
+
+        self.make_dir()
+
+        result = open("info.txt", 'x')
+        result.write(f'Title: {self.title}\n')
+        result.write(f'Description: {self.description}\n')
+        result.write('Brand: Wayfair\n')
+        result.write('Tags: Wayfair, Furniture, Bed, Matress, Homedecor, Rustic, Boho, Decor, Home, Interior, Sofa, Daybed, Sale, Vintage, Chair, Stool, Velvet, Luxury, Kitchen, Bedroom\n')
+        result.close
+
 
 with open('G:\\My Drive\\selling\\test\\master_doc.txt', 'r') as links:
     link_list = links.readlines()
 
 for link in link_list:
-    a = Extract(link) 
+    a = Extract(link)
     a.extract_info()
