@@ -24,6 +24,9 @@ os.chdir('G:\\My Drive\\selling\\test')
 ads = os.listdir()
 number_of_adds = len(ads)
 
+browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
+
+
 #Automate class and script
 class Automate_add_post:
     """
@@ -35,7 +38,7 @@ class Automate_add_post:
     def __init__(self, c_file,) -> None:
 
         #Setting up browser, File paths, etc
-        self.browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
+        self.browser = browser
         self.abs_path = 'G:\\My Drive\\selling\\test\\'
         self.post = 'https://www.facebook.com/marketplace/create/item'
         self.file_dir = c_file
@@ -143,8 +146,8 @@ class Automate_add_post:
 
         self.done = self.browser.find_element(By.XPATH, (self.done))
         self.done.click()
-        sleep(1000)
 
+        self.browser.quit()
 
 
 

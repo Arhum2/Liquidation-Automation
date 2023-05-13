@@ -12,7 +12,7 @@ chrome_service = Service(executable_path="C:\\Program Files (x86)\\chromedriver.
 
 chrome_options = uc.ChromeOptions()
 chrome_options.add_argument('--user-data-dir=C:\\Users\\pokem\\AppData\\Local\\Google\\Chrome\\User Data')
-chrome_options.add_argument('--profile-directory=Default')
+chrome_options.add_argument('--profile-directory=Profile 3')
 chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--remote-debugging-port=9222')
@@ -38,7 +38,7 @@ class Extract:
         self.browser = uc.Chrome(options=chrome_options, version_main=112)
         self.browser.get(self.link)
 
-        self.images = '//*[@id="bd"]/div[1]/div[2]/div/div[1]/div[2]/div/div/div/div[1]/div/div/div[1]/div[3]/ul/li[3]/div/div/div/div/div'
+        self.images = '/html/body/div[4]/div/main/div/div[1]/div[2]/div/div[1]/div[2]/div/div/div/div[1]/div/div/div/div[3]/ul/li[1]/div/div/div/div'
 
 
     # def make_dir(self):
@@ -85,8 +85,8 @@ class Extract:
     #     result.close
 
     def extract_pics(self):
-        self.images = self.browser.find_element(By.XPATH, self.images)
-        x = 1
+        self.images = self.browser.find_element(By.CLASS_NAME, self.images)
+        x = self.images.get_attribute('src')
 
 with open('G:\\My Drive\\selling\\test\\master_doc.txt', 'r') as links:
     link_list = links.readlines()
