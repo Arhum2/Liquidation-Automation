@@ -38,60 +38,61 @@ class Extract:
         self.browser = uc.Chrome(options=chrome_options, version_main=112)
         self.browser.get(self.link)
 
-        self.images = '/html/body/div[4]/div/main/div/div[1]/div[2]/div/div[1]/div[2]/div/div/div/div[1]/div/div/div/div[3]/ul/li[1]/div/div/div/div'
+    def make_dir(self):
+        curr_dir = os.getcwd()
+        wrong_lst = ['<', '>', ':', '"', '/', '\\', '|', '?', '*']
+        self.title = self.title.strip()
 
+        for char in self.title:
+            if char in wrong_lst:
+                self.title = self.title.strip(char)
 
-    # def make_dir(self):
-    #     curr_dir = os.getcwd()
-    #     wrong_lst = ['<', '>', ':', '"', '/', '\\', '|', '?', '*']
-    #     title = self.title.strip()
+        dir_path = f'{curr_dir}\\{self.title}'
 
-    #     for char in title:
-    #         if char in wrong_lst:
-    #             title = title.strip(char)
-
-    #     dir_path = f'{curr_dir}\\{title}'
-
-    #     os.makedirs(title)
-    #     os.chdir(dir_path)
+        os.makedirs(self.title)
+        os.chdir(dir_path)
     
-    # def extract_info(self):
-    #     # self.browser.get(self.link)
-    #     self.title = self.browser.find_element(By.TAG_NAME, self.title)
-    #     self.title = self.title._parent.title
+    def extract_info(self):
+        self.browser.get(self.link)
+        self.title = self.browser.find_element(By.TAG_NAME, self.title)
+        self.title = self.title._parent.title
 
-    #     self.description_button = self.browser.find_element(By.XPATH, self.description_button)
-    #     self.description_button.click()
+        self.description_button = self.browser.find_element(By.XPATH, self.description_button)
+        self.description_button.click()
         
-    #     self.product_overview = self.browser.find_element(By.XPATH, self.product_overview)
-    #     self.description = self.product_overview.text
+        self.product_overview = self.browser.find_element(By.XPATH, self.product_overview)
+        self.description = self.product_overview.text
 
-    #     self.features = self.browser.find_element(By.XPATH, self.features)
-    #     self.features = self.features.text
+        self.features = self.browser.find_element(By.XPATH, self.features)
+        self.features = self.features.text
 
-    #     self.dimensions_button = self.browser.find_element(By.XPATH, self.dimensions_button)
-    #     self.dimensions_button.click()
+        self.dimensions_button = self.browser.find_element(By.XPATH, self.dimensions_button)
+        self.dimensions_button.click()
 
-    #     self.dimensions = self.browser.find_element(By.XPATH, self.dimensions)
-    #     self.dimensions = self.dimensions.text
+        self.dimensions = self.browser.find_element(By.XPATH, self.dimensions)
+        self.dimensions = self.dimensions.text
 
-    #     self.make_dir()
+        self.make_dir()
 
-    #     result = open("info.txt", 'x')
-    #     result.write(f'Title: {self.title}\n')
-    #     result.write(f'Description: {self.description}\n')
-    #     result.write('Brand: Wayfair\n')
-    #     result.write('Tags: Wayfair, Furniture, Bed, Matress, Homedecor, Rustic, Boho, Decor, Home, Interior, Sofa, Daybed, Sale, Vintage, Chair, Stool, Velvet, Luxury, Kitchen, Bedroom\n')
-    #     result.close
+        result = open("info.txt", 'x')
+        result = open('info.txt', 'w')
+        result.write(f'Title: {self.title}\n')
+        result.write(f'Description: {self.description}+{self.features}+{self.dimensions}\n')
+        result.write('Brand: Wayfair\n')
+        result.write('Tags: Wayfair, Furniture, Bed, Matress, Homedecor, Rustic, Boho, Decor, Home, Interior, Sofa, Daybed, Sale, Vintage, Chair, Stool, Velvet, Luxury, Kitchen, Bedroom\n')
+        result.close
+
+        os.chdir('..')
 
     def extract_pics(self):
-        self.images = self.browser.find_element(By.CLASS_NAME, self.images)
-        x = self.images.get_attribute('src')
+        photo_dir = f'({os.getcwd}\\{self.title}photo)'
+        os.makedirs(f'{photo_dir}')
+        self.browser.save_screenshot(f'{photo_dir}\\pic.png')
 
 with open('G:\\My Drive\\selling\\test\\master_doc.txt', 'r') as links:
     link_list = links.readlines()
 
 for link in link_list:
     a = Extract(link)
-    # a.extract_info()
+    a.extract_info()
     a.extract_pics()
