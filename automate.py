@@ -20,7 +20,7 @@ chrome_options.add_argument('--disable-infobars')
 
 #Navigating to selling folder
 
-os.chdir('G:\\My Drive\\selling\\test')
+os.chdir('G:\\My Drive\\selling\\not posted')
 ads = os.listdir()
 number_of_adds = len(ads)
 
@@ -39,13 +39,15 @@ class Automate_add_post:
 
         #Setting up browser, File paths, etc
         self.browser = browser
-        self.abs_path = 'G:\\My Drive\\selling\\test\\'
+        self.abs_path = 'G:\\My Drive\\selling\\not posted\\'
         self.post = 'https://www.facebook.com/marketplace/create/item'
         self.file_dir = c_file
 
         #Setting up XPATHs
         self.photo_button = "//span[text()='Add Photos']"
-        self.title_button = '//*[@id=":rt:"]'
+        self.title_button = "//span[text()='Title']"
+        self.title_button2 = '//*[@id=":rt:"]'
+        self.title_button3 = '//*[@id=":r18:"]'
         self.price_button = '//*[@id=":rv:"]'
         self.category_drop = '//*[@id=":r11:"]/div'
         self.category_furniture = "//span[text()='Furniture']"
@@ -59,12 +61,13 @@ class Automate_add_post:
 
     def get_info(self) -> dict:
 
-        x = self.abs_path + self.file_dir + '\\info.txt'
+        x = self.abs_path + self.file_dir.strip('.') + '\\info.txt'
         temp = []
         result = {}
 
         with open(x, 'r') as txt:
             info = txt.readlines()
+
             for line in info:
                 temp.append(line)
 
@@ -90,18 +93,21 @@ class Automate_add_post:
 
         #Filling photo field
         self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
-        sleep(3)
         self.photo_button.click()
 
         #mutating directory
         photo_directory = self.file_dir.strip('.')
-        photo_directory = photo_directory('\\')
         photo_directory = photo_directory + '\\photo'
 
         #navigating to photo folder and uploading all photos
-        pyautogui.write(self.abs_path)
-        sleep(2)
+        # pyautogui.write(self.abs_path)
+        # sleep(2)
+        # pyautogui.press('enter')
+        sleep(3)
+        pyautogui.write('G:\\My Drive\\selling\\not posted')
+        sleep(3)
         pyautogui.press('enter')
+        sleep(3)
         pyautogui.write(photo_directory)
         sleep(2)
         pyautogui.press('enter')
@@ -116,8 +122,18 @@ class Automate_add_post:
 
         info = self.get_info()
 
-        self.title_button = self.browser.find_element(By.XPATH, (self.title_button))
-        self.title_button.send_keys(info['Title'])
+        try:
+            self.title_button = self.browser.find_element(By.XPATH, (self.title_button))
+            self.title_button.send_keys(info['Title'])
+        
+        except:
+            self.title_button = self.browser.find_element(By.XPATH, (self.title_button2))
+            self.title_button.send_keys(info['Title'])
+        
+        finally:
+            self.title_button = self.browser.find_element(By.XPATH, (self.title_button3))
+            self.title_button.send_keys(info['Title']) 
+
 
         self.price_button = self.browser.find_element(By.XPATH, (self.price_button))
         self.price_button.send_keys(info['Price'])
@@ -153,6 +169,7 @@ class Automate_add_post:
 
 for i in range(number_of_adds):
     curr_file = ads[i]
-    a = Automate_add_post(f'{os.curdir}\\{curr_file}')
+    testing = f'{os.curdir}\{curr_file}'
+    a = Automate_add_post(f'{os.curdir}{curr_file}')
     a.automate()
     sleep(30)
