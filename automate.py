@@ -7,6 +7,7 @@ from time import sleep
 import pyautogui
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import ElementNotInteractableException
 
 chrome_service = Service(executable_path="C:\\Program Files (x86)\\chromedriver.exe")
 
@@ -25,7 +26,7 @@ os.chdir('G:\\My Drive\\selling\\not posted')
 ads = os.listdir()
 number_of_adds = len(ads)
 
-browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
+# browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
 
 
 #Automate class and script
@@ -204,6 +205,7 @@ class Automate_add_post:
 
         try:
             self.description = self.browser.find_element(By.XPATH, (self.description))
+            self.description.click()
             self.description.send_keys(info['Description'])
         
         except NoSuchElementException or ElementNotInteractableException: 
@@ -228,3 +230,4 @@ for i in range(number_of_adds):
     a = Automate_add_post(f'{os.curdir}{curr_file}')
     a.automate()
     sleep(10)
+    i += 1
