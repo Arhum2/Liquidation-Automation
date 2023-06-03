@@ -39,7 +39,7 @@ class Automate_add_post:
     def __init__(self, c_file,) -> None:
 
         #Setting up browser, File paths, etc
-        self.browser = browser
+        self.browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
         self.abs_path = 'G:\\My Drive\\selling\\not posted\\'
         self.post = 'https://www.facebook.com/marketplace/create/item'
         self.file_dir = c_file
@@ -63,6 +63,7 @@ class Automate_add_post:
         self.color = '//*[@id=":r1v:"]'
         self.color2 = '//*[@id=":r20:"]'
         self.description = '//*[@id=":r18:"]'
+        self.description2 = '//*[@id=":r19:"]'
         self.tags = '//*[@id=":r1e:"]'
         self.done = '//span[text()="Save draft"]'
 
@@ -176,26 +177,38 @@ class Automate_add_post:
                 self.condition_new = self.browser.find_element(By.XPATH, self.condition_new).click()
             except:
                 self.condition_new = self.browser.find_element(By.XPATH, self.condition_new2).click()
+                
+        try:
+            try:
+                self.brand = self.browser.find_element(By.XPATH, self.brand)
+                self.brand.send_keys(info['Brand'])
+            except:
+                self.brand = self.browser.find_element(By.XPATH, self.brand2)
+                self.brand.send_keys(info['Brand'])
+
+        except NoSuchElementException:
+            pass
+
+        if info['Color']: #Bandaid fix
+            try:
+                try:
+                    self.color = self.browser.find_element(By.XPATH, (self.color))
+                    self.color.send_keys(info['Color'])
+                
+                except:
+                    self.color = self.browser.find_element(By.XPATH, (self.color2))
+                    self.color.send_keys(info['Color'])
+            
+            except NoSuchElementException:
+                pass
 
         try:
-            self.brand = self.browser.find_element(By.XPATH, self.brand)
-            self.brand.send_keys(info['Brand'])
+            self.description = self.browser.find_element(By.XPATH, (self.description))
+            self.description.send_keys(info['Description'])
         
-        except NoSuchElementException:
-            self.brand = self.browser.find_element(By.XPATH, self.brand2)
-            self.brand.send_keys(info['Brand'])
-
-        if info['Color']:
-            try:
-                self.color = self.browser.find_element(By.XPATH, (self.color))
-                self.color.send_keys(info['Color'])
-            
-            except:
-                self.color = self.browser.find_element(By.XPATH, (self.color2))
-                self.color.send_keys(info['Color'])
-
-        self.description = self.browser.find_element(By.XPATH, (self.description))
-        self.description.send_keys(info['Description'])
+        except NoSuchElementException or ElementNotInteractableException: 
+            self.description = self.browser.find_element(By.XPATH, (self.description2))
+            self.description.send_keys(info['Description'])
 
         self.tags = self.browser.find_element(By.XPATH, (self.tags))
         for tag in info['Tags']:
@@ -205,7 +218,7 @@ class Automate_add_post:
         self.done = self.browser.find_element(By.XPATH, (self.done))
         self.done.click()
 
-        self.browser.quit()
+        self.browser.close()
 
 
 
