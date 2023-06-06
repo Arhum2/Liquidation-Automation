@@ -66,6 +66,7 @@ class Automate_add_post:
         self.description = '//*[@id=":r18:"]'
         self.description2 = '//*[@id=":r19:"]'
         self.tags = '//*[@id=":r1e:"]'
+        self.tags2 = '//*[@id=":r1f:"]'
         self.done = '//span[text()="Save draft"]'
 
     def get_info(self) -> dict:
@@ -132,22 +133,21 @@ class Automate_add_post:
         info = self.get_info()
 
         try:
-            self.title_button = self.browser.find_element(By.XPATH, (self.title_button))
-            self.title_button.send_keys(info['Title'])
-            gate = True
+            try:
+                self.title_button = self.browser.find_element(By.XPATH, (self.title_button))
+                self.title_button.send_keys(info['Title'])
+                gate = True
+        
+            except NoSuchElementException:
+                self.title_button = self.browser.find_element(By.XPATH, (self.title_button2))
+                self.title_button.send_keys(info['Title'])
+                gate = True
         
         except NoSuchElementException:
-            self.title_button = self.browser.find_element(By.XPATH, (self.title_button2))
+            self.title_button = self.browser.find_element(By.XPATH, (self.title_button3))
             self.title_button.send_keys(info['Title'])
-            gate = True
-        
-        if not gate:
-            try:
-                self.title_button = self.browser.find_element(By.XPATH, (self.title_button3))
-                self.title_button.send_keys(info['Title'])
 
-            except NoSuchElementException:
-                pass        
+            
 
         try:
             self.price_button = self.browser.find_element(By.XPATH, (self.price_button))
@@ -184,10 +184,14 @@ class Automate_add_post:
                 self.brand = self.browser.find_element(By.XPATH, self.brand)
                 self.brand.send_keys(info['Brand'])
             except:
-                self.brand = self.browser.find_element(By.XPATH, self.brand2)
-                self.brand.send_keys(info['Brand'])
-
-        except NoSuchElementException:
+                try:
+                    self.brand = self.browser.find_element(By.XPATH, self.brand2)
+                    self.brand.send_keys(info['Brand'])
+                
+                except NoSuchElementException:
+                    pass
+        
+        except:
             pass
 
         if info['Color']: #Bandaid fix
@@ -208,11 +212,17 @@ class Automate_add_post:
             self.description.click()
             self.description.send_keys(info['Description'])
         
-        except NoSuchElementException or ElementNotInteractableException: 
+        except ElementNotInteractableException: 
             self.description = self.browser.find_element(By.XPATH, (self.description2))
+            self.description.click()
             self.description.send_keys(info['Description'])
 
-        self.tags = self.browser.find_element(By.XPATH, (self.tags))
+        try:
+            self.tags = self.browser.find_element(By.XPATH, (self.tags))
+        
+        except NoSuchElementException:
+            self.tags = self.browser.find_element(By.XPATH, (self.tags2))
+
         for tag in info['Tags']:
             self.tags.send_keys(tag)
             self.tags.send_keys(Keys.ENTER)
