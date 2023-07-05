@@ -9,6 +9,10 @@ from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+
 chrome_service = Service(executable_path="C:\\Program Files (x86)\\chromedriver.exe")
 
 chrome_options = Options()
@@ -22,7 +26,7 @@ chrome_options.add_argument('--disable-infobars')
 
 #Navigating to selling folder
 
-os.chdir('G:\\My Drive\\selling\\not posted')
+os.chdir('G:\\My Drive\\selling\\posted\\instagram not posted')
 ads = os.listdir()
 number_of_adds = len(ads)
 
@@ -41,7 +45,7 @@ class Automate_add_post:
 
         #Setting up browser, File paths, etc
         self.browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
-        self.abs_path = 'G:\\My Drive\\selling\\not posted\\'
+        self.abs_path = 'G:\\My Drive\\selling\\posted\\instagram not posted\\'
         self.post = 'https://www.instagram.com/furniturefrenzy_/'
         self.file_dir = c_file
 
@@ -51,9 +55,10 @@ class Automate_add_post:
         self.next_btn = '//div[text()="Next"]'
         self.next_btn2 = '//div[text()="Next"]'
         self.post_btn = '//div[text()="Share"]'
-        self.description = 'Write a caption...'
+        self.emoji = "//button[@type='button']"
+        self.description = '//*[@id="mount_0_0_ms"]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[2]/div[1]/div[1]'
         self.location = '//*[@id="mount_0_0_OF"]/div/div/div[3]/div/div/div[1]/div/div[3]/div/div/div/div/div[2]/div/div/div/div[2]/div[2]/div/div/div/div[3]/div/label/input'
-
+        self.taglist = "#wayfair #furniture #brampton #toronto #interior #design #decor #ontario #realestatetoronto #interiordesigner #missusagua #jysk #living #rustic #rusticdecor #boho"
 
     # ==================== Helper Functions ====================
 
@@ -114,7 +119,7 @@ class Automate_add_post:
         # sleep(2)
         # pyautogui.press('enter')
         sleep(2)
-        pyautogui.write('G:\\My Drive\\selling\\not posted')
+        pyautogui.write('G:\\My Drive\\selling\\posted\\instagram not posted')
         sleep(2)
         pyautogui.press('enter')
         sleep(2)
@@ -134,11 +139,22 @@ class Automate_add_post:
         self.next_btn2 = self.browser.find_element(By.XPATH, (self.next_btn2))
         self.next_btn2.click()
 
-        self.description = self.browser.find_element(By.CSS_SELECTOR, "textarea[aria-label='Write a caption…']")
-        self.description.send_keys(info['Description'])
+        info = self.get_info()
 
-        self.location = self.browser.find_element(By.XPATH, (self.location))
-        self.location.send_keys('Brampton, Ontario')
+        pyautogui.moveTo(1600, 450)
+        sleep(2)
+        pyautogui.click()
+        sleep(2)
+        pyautogui.write("FOR SALE! " + info['Description'] + '\n' + '\n'+ self.taglist)
+
+
+        self.post_btn = self.browser.find_element(By.XPATH, (self.post_btn))
+        self.post_btn.click()
+        
+        sleep(2)
+
+        self.browser.quit()
+
 
 
 
