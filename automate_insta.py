@@ -8,6 +8,7 @@ import pyautogui
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
+import shutil
 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -26,7 +27,7 @@ chrome_options.add_argument('--disable-infobars')
 
 #Navigating to selling folder
 
-os.chdir('G:\\My Drive\\selling\\posted\\instagram not posted')
+os.chdir('G:\\My Drive\\selling\\instagram not posted')
 ads = os.listdir()
 number_of_adds = len(ads)
 
@@ -45,7 +46,7 @@ class Automate_add_post:
 
         #Setting up browser, File paths, etc
         self.browser = webdriver.Chrome(service=chrome_service, options=chrome_options)
-        self.abs_path = 'G:\\My Drive\\selling\\posted\\instagram not posted\\'
+        self.abs_path = 'G:\\My Drive\\selling\\instagram not posted\\'
         self.post = 'https://www.instagram.com/furniturefrenzy_/'
         self.file_dir = c_file
 
@@ -69,7 +70,7 @@ class Automate_add_post:
         temp = []
         result = {}
 
-        with open(x, 'r') as txt:
+        with open(x, 'r', encoding='utf-8') as txt:
             info = txt.readlines()
 
             for line in info:
@@ -87,8 +88,10 @@ class Automate_add_post:
                     else:
                         result[curr_line[0]] = []
                         result[curr_line[0]].append(item.strip())
-            else:
+            elif ':' in line:
                 result[curr_line[0]] = curr_line[1].strip()
+            else:
+                result['Description'] += curr_line[0].strip()
         
         return result
 
@@ -119,7 +122,7 @@ class Automate_add_post:
         # sleep(2)
         # pyautogui.press('enter')
         sleep(2)
-        pyautogui.write('G:\\My Drive\\selling\\posted\\instagram not posted')
+        pyautogui.write('G:\\My Drive\\selling\\instagram not posted')
         sleep(2)
         pyautogui.press('enter')
         sleep(2)
@@ -163,5 +166,6 @@ for i in range(number_of_adds):
     testing = f'{os.curdir}\{curr_file}'
     a = Automate_add_post(f'{os.curdir}{curr_file}')
     a.automate()
-    sleep(10)
+    sleep(1)
+    shutil.move('G:\\My Drive\\selling\\instagram not posted\\' + curr_file, 'G:\\My Drive\\selling\\insta posted\\')
     i += 1

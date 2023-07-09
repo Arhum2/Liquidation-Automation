@@ -69,6 +69,7 @@ class Automate_add_post:
         self.tags = '//*[@id=":r1e:"]'
         self.tags2 = '//*[@id=":r1f:"]'
         self.done = '//span[text()="Save draft"]'
+        self.meetup_btn = '//*[@id="mount_0_0_Sn"]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[1]/div/div[3]/div[1]/div[2]/div/div/div[10]/div/div/div[11]/div/div/div[2]/div/div/div[1]/div/div/div/div/div[1]'
 
     def get_info(self) -> dict:
         x = self.abs_path + self.file_dir.strip('.') + '\\info.txt'
@@ -241,14 +242,21 @@ class Automate_add_post:
             self.tags.send_keys(tag)
             self.tags.send_keys(Keys.ENTER)
 
+        sleep(3)
+
+        self.meetup_btn = self.browser.find_element(By.XPATH, (self.meetup_btn))
+        self.meetup_btn.click()
+        
         self.done = self.browser.find_element(By.XPATH, (self.done))
         self.done.click()
 
         self.browser.close()
 
-
+if number_of_adds == 0:
+    print('Completed')
 
 for i in range(number_of_adds):
+
     curr_file = ads[i]
     testing = f'{os.curdir}\{curr_file}'
     a = Automate_add_post(f'{os.curdir}{curr_file}')
