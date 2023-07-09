@@ -8,6 +8,7 @@ import pyautogui
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import ElementNotInteractableException
+import shutil
 
 chrome_service = Service(executable_path="C:\\Program Files (x86)\\chromedriver.exe")
 
@@ -239,5 +240,6 @@ for i in range(number_of_adds):
     testing = f'{os.curdir}\{curr_file}'
     a = Automate_add_post(f'{os.curdir}{curr_file}')
     a.automate()
-    sleep(10)
+    sleep(1)
+    shutil.move('G:\\My Drive\\selling\\not posted\\' + curr_file, 'G:\\My Drive\\selling\\posted')
     i += 1
