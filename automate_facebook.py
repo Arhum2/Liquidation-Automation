@@ -71,20 +71,33 @@ class Automate_add_post:
         self.done = '//span[text()="Save draft"]'
 
     def get_info(self) -> dict:
-
         x = self.abs_path + self.file_dir.strip('.') + '\\info.txt'
         temp = []
         result = {}
 
-        with open(x, 'r') as txt:
+        with open(x, 'r', encoding='utf-8') as txt:
             info = txt.readlines()
 
             for line in info:
                 temp.append(line)
 
-        #{Tags: [list of tags]}
         for line in temp:
             curr_line = line.split(':')
+
+            if curr_line[0] == 'Description':
+                result[curr_line[0]] = ''
+                d_temp = temp[2:]
+                d_temp.pop()
+                d_temp.pop()
+                d_temp.pop()
+                d_temp[0] = d_temp[0].strip('Description:')
+                temp_str = ''
+                for line in d_temp:
+                    temp_str += line.strip()
+
+                result['Description'] += temp_str
+
+            #{Tags: [list of tags]}
             if curr_line[0] == 'Tags':
                 result[curr_line[0]] = None
                 x = curr_line[1].split(',')
@@ -94,7 +107,7 @@ class Automate_add_post:
                     else:
                         result[curr_line[0]] = []
                         result[curr_line[0]].append(item.strip())
-            else:
+            elif ':' in line:
                 result[curr_line[0]] = curr_line[1].strip()
         
         return result
