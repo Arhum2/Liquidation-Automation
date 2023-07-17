@@ -59,27 +59,40 @@ class Automate_add_post:
         self.description = '//*[@id="pstad-descrptn"]'
         self.pics = '//*[@id="MediaUploadedImages"]/li[1]/div[1]'
         self.price = '//*[@id="PriceAmount"]'
-        self.post_btn = '//*[@id="MainForm"]/div[11]/div/div/button[1]'
+        self.post_btn = '//*[@id="MainForm"]/div[10]/div/div/button[1]'
 
 
     # ==================== Helper Functions ====================
 
     # Extracts product info from info.txt
     def get_info(self) -> dict:
-
         x = self.abs_path + self.file_dir.strip('.') + '\\info.txt'
         temp = []
         result = {}
 
-        with open(x, 'r') as txt:
+        with open(x, 'r', encoding='utf-8') as txt:
             info = txt.readlines()
 
             for line in info:
                 temp.append(line)
 
-        #{Tags: [list of tags]}
         for line in temp:
             curr_line = line.split(':')
+
+            if curr_line[0] == 'Description':
+                result[curr_line[0]] = ''
+                d_temp = temp[2:]
+                d_temp.pop()
+                d_temp.pop()
+                d_temp.pop()
+                d_temp[0] = d_temp[0].strip('Description:')
+                temp_str = ''
+                for line in d_temp:
+                    temp_str += line.strip()
+
+                result['Description'] += temp_str
+
+            #{Tags: [list of tags]}
             if curr_line[0] == 'Tags':
                 result[curr_line[0]] = None
                 x = curr_line[1].split(',')
@@ -89,7 +102,7 @@ class Automate_add_post:
                     else:
                         result[curr_line[0]] = []
                         result[curr_line[0]].append(item.strip())
-            else:
+            elif ':' in line:
                 result[curr_line[0]] = curr_line[1].strip()
         
         return result
@@ -130,14 +143,14 @@ class Automate_add_post:
 
         sleep(6)
 
-        self.dropoff_btn = self.browser.find_element(By.XPATH, (self.dropoff_btn))
-        self.dropoff_btn.click()
-        self.curbside_btn = self.browser.find_element(By.XPATH, (self.curbside_btn))
-        self.curbside_btn.click()
-        self.cashless_btn = self.browser.find_element(By.XPATH, (self.cashless_btn))
-        self.cashless_btn.click()
-        self.cash_btn = self.browser.find_element(By.XPATH, (self.cash_btn))
-        self.cash_btn.click()
+        # self.dropoff_btn = self.browser.find_element(By.XPATH, (self.dropoff_btn))
+        # self.dropoff_btn.click()
+        # self.curbside_btn = self.browser.find_element(By.XPATH, (self.curbside_btn))
+        # self.curbside_btn.click()
+        # self.cashless_btn = self.browser.find_element(By.XPATH, (self.cashless_btn))
+        # self.cashless_btn.click()
+        # self.cash_btn = self.browser.find_element(By.XPATH, (self.cash_btn))
+        # self.cash_btn.click()
 
         self.condition_drop = self.browser.find_element(By.XPATH, (self.condition_drop))
         self.condition_drop.click()
@@ -192,3 +205,12 @@ for i in range(number_of_adds):
     a.automate()
     sleep(10)
     i += 1
+
+
+
+
+# ========================================================================================================
+
+                                # HERES A DEMO OF MY PROJECT :D #
+
+# ========================================================================================================
