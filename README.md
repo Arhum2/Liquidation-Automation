@@ -6,19 +6,19 @@
     <img src="https://user-images.githubusercontent.com/82200170/183231685-baf5e7c1-6d57-4c4d-9aa8-bba81d35b7d3.png">
   </a>
 
-  <h3 align="center">Liquidity services manifest web scrapper</h3>
+  <h3 align="center">Liquidity services manifest web scrapper, Auto ad poster, and Instagram Auto Poster</h3>
 
   <p align="center">
     By Arhum Shahzad
     <br />
     <br />
-    <a>This project takes manifests from Liquidity Services and uses Python and Slenium to scrape and look up items for auction. searching for items in a manifest, making it faster to source products and record data Improved product research and data compiling from 15 minutes to 1 minute per manifest. 
+    <a>This project takes manifests from Liquidity Services and uses Python and Selenium to scrape and look up items for auction. searching for items in a manifest, making it faster to source products and record data, This project improved product research and data compiling from 15 minutes to 1 minute per manifest. The Auto ad poster uses this complied data to then post these items onto platforms such as Facebook and Kijiji. This program can post 30 listings in a matter of minutes whereas it would take me upwards of two hours of manually posting. The final addition to this project is the Instagram Auto Poster. This posts my current inventory to my business Instagram page and allows my customers to stay up to date about my latest products for sale.
 
 
 </a>
     <br />
     <br />
-    <a href="#usage">View Demo</a>
+    <a href="#usage">View Scrapper Demo</a>
     ·
     <a href="https://github.com/Arhum2/Manifest-Scrapper/issues">Report Bug</a>
     ·
@@ -56,7 +56,7 @@
 
 ![Image-1](https://user-images.githubusercontent.com/82200170/188043942-de4e5a6d-9d2d-41b4-9a2a-12a8f6d65d6b.jpg)
 
-After sourcings furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE)  I realized most of my time was consumed manually by looking up and researching products in a manifest. After spending some time learning Python automation I expanded my knowledge to this project. Manifest Scrapper parses through a .CSV file and looks up each product listed in a Liquidity Services manifest.
+After sourcing furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE)  I realized most of my time was consumed manually by looking up and researching products in a manifest. After spending some time learning Python automation I expanded and applied my knowledge to this project. Manifest Scrapper parses through a .CSV file and looks up each product listed in a Liquidity Services manifest, 
 
 
 ### Here's why I created this project:
@@ -64,10 +64,36 @@ After sourcings furniture from [Liquadation.com](https://www.liquidation.com/ind
 * You shouldn't be doing the same tasks over and over
 * implements DRY principles to my business
 
+
+## Usage
+
+Here is a full demo of Manifest Scrapper taking in user input (the name of the manifest file) and rapidly looking up each product. 
+
+
+https://user-images.githubusercontent.com/82200170/187813623-06efb504-6ee3-4f81-b96d-9f58791b8004.mp4 
+<p align="right">(<a href="#readme-top">back to top</a>) </p>
+
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
 ### Built With
 
 * [Python](https://www.python.org/)
 * [Selenium](https://www.selenium.dev/)
+* [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/#)
 
 ### Prerequisites
 
@@ -92,30 +118,7 @@ After sourcings furniture from [Liquadation.com](https://www.liquidation.com/ind
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
 
-Here is a full demo of Manifest Scrapper taking in user input (the name of the manisfest file) and rapidly looking up each product. 
-
-
-https://user-images.githubusercontent.com/82200170/187813623-06efb504-6ee3-4f81-b96d-9f58791b8004.mp4 
-<p align="right">(<a href="#readme-top">back to top</a>) </p>
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information. <p align="right">(<a href="#readme-top">back to top</a>)</p>
