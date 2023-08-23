@@ -69,9 +69,9 @@ class Automate_add_post:
         self.tags = '//*[@id=":r1e:"]'
         self.tags2 = '//*[@id=":r1f:"]'
         self.done = '//span[text()="Save draft"]'
-        self.meetup_btn = '//*[@id="mount_0_0_Sn"]/div/div[1]/div/div[3]/div/div/div/div[1]/div[1]/div[1]/div/div[3]/div[1]/div[2]/div/div/div[10]/div/div/div[11]/div/div/div[2]/div/div/div[1]/div/div/div/div/div[1]'
 
     def get_info(self) -> dict:
+
         x = self.abs_path + self.file_dir.strip('.') + '\\info.txt'
         temp = []
         result = {}
@@ -82,23 +82,9 @@ class Automate_add_post:
             for line in info:
                 temp.append(line)
 
+        #{Tags: [list of tags]}
         for line in temp:
             curr_line = line.split(':')
-
-            if curr_line[0] == 'Description':
-                result[curr_line[0]] = ''
-                d_temp = temp[2:]
-                d_temp.pop()
-                d_temp.pop()
-                d_temp.pop()
-                d_temp[0] = d_temp[0].strip('Description:')
-                temp_str = ''
-                for line in d_temp:
-                    temp_str += line.strip()
-
-                result['Description'] += temp_str
-
-            #{Tags: [list of tags]}
             if curr_line[0] == 'Tags':
                 result[curr_line[0]] = None
                 x = curr_line[1].split(',')
@@ -108,7 +94,7 @@ class Automate_add_post:
                     else:
                         result[curr_line[0]] = []
                         result[curr_line[0]].append(item.strip())
-            elif ':' in line:
+            else:
                 result[curr_line[0]] = curr_line[1].strip()
         
         return result
@@ -242,21 +228,14 @@ class Automate_add_post:
             self.tags.send_keys(tag)
             self.tags.send_keys(Keys.ENTER)
 
-        sleep(3)
-
-        self.meetup_btn = self.browser.find_element(By.XPATH, (self.meetup_btn))
-        self.meetup_btn.click()
-        
         self.done = self.browser.find_element(By.XPATH, (self.done))
         self.done.click()
 
         self.browser.close()
 
-if number_of_adds == 0:
-    print('Completed')
+
 
 for i in range(number_of_adds):
-
     curr_file = ads[i]
     testing = f'{os.curdir}\{curr_file}'
     a = Automate_add_post(f'{os.curdir}{curr_file}')
@@ -264,14 +243,3 @@ for i in range(number_of_adds):
     sleep(1)
     shutil.move('G:\\My Drive\\selling\\not posted\\' + curr_file, 'G:\\My Drive\\selling\\posted')
     i += 1
-
-
-
-
-
-
-# ========================================================================================================
-
-                                # HERES A DEMO OF MY PROJECT :D #
-
-# ========================================================================================================
