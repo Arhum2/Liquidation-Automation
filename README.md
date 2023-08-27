@@ -6,14 +6,14 @@
     <img src="https://user-images.githubusercontent.com/82200170/183231685-baf5e7c1-6d57-4c4d-9aa8-bba81d35b7d3.png">
   </a>
 
-  <h3 align="center">Liquidity services manifest web scrapper, Auto ad poster, and Instagram Auto Poster</h3>
+  <h3 align="center">Inventory sourcing, Facebook ad posting, and Social media updates.</h3>
 
   <p align="center">
     By Arhum Shahzad
     <br />
     <br />
-    <a>This project takes manifests from Liquidity Services and uses Python and Selenium to scrape and look up items for auction. searching for items in a manifest, making it faster to source products and record data, This project improved product research and data compiling from 15 minutes to 1 minute per manifest. The Auto ad poster uses this complied data to then post these items onto platforms such as Facebook and Kijiji. This program can post 30 listings in a matter of minutes whereas it would take me upwards of two hours of manually posting. The final addition to this project is the Instagram Auto Poster. This posts my current inventory to my business Instagram page and allows my customers to stay up to date about my latest products for sale.
-
+    <a>
+      This project automates manifest processing from Liquidity Services using Python and Selenium, significantly speeding up item lookup for auctions. It has reduced product research and data compilation time from 15 minutes to just 1 minute per manifest. The Auto Ad Poster utilizes this compiled data to swiftly post items on platforms like Facebook and Kijiji, achieving 30 listings in minutes, a task that previously took over two hours manually. The project also features an Instagram Auto Poster that seamlessly updates my business page with current inventory, keeping customers informed about the latest products for sale.
 
 </a>
     <br />
