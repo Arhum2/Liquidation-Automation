@@ -53,6 +53,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 <h3>Step 1</h3>
+
 ![Image-1](https://user-images.githubusercontent.com/82200170/188043942-de4e5a6d-9d2d-41b4-9a2a-12a8f6d65d6b.jpg)
 
 After sourcing furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE)  I realized most of my time was consumed manually by looking up and researching products in a manifest. After spending some time learning Python automation I expanded and applied my knowledge to this project. Manifest Scrapper parses through a .CSV file and looks up each product listed in a Liquidity Services manifest, 
