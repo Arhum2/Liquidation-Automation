@@ -2,11 +2,9 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Arhum2/Manifest-Scrapper">
-    <img src="https://user-images.githubusercontent.com/82200170/183231685-baf5e7c1-6d57-4c4d-9aa8-bba81d35b7d3.png">
-  </a>
-
-  <h3 align="center">Inventory sourcing, Facebook ad posting, and Social media updates.</h3>
+  <h1>Automated Inventory Sourcing, Ad Posting, and Instagram Updates</h1>
+  
+  ![Flowchart](https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/24995d83-fabc-4056-aa09-5cde9f903417)
 
   <p align="center">
     By Arhum Shahzad
@@ -57,17 +55,11 @@
 * You shouldn't be doing the same tasks over and over
 * implements DRY principles to my business
 
-<h3> Heres a visualization of the listing lifecycle</h3>
-
-![Flowchart](https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/8f1e52af-804d-4b06-8cda-356a2af95d15)
 
 ## Step 1, Sourcing
 
 Having sourced furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE), I recognized that there was a significant time drain in manual product research of manifests. Using Python and Selenium, I extended and applied this to my business to create the Manifest Scrapper. This tool parses a .CSV file, efficiently searching and retrieving details for each product listed in Liquidity Services manifests. Reducing the processing time per manifest from 15 minutes to just 1 minute.
 
-
-
-## Demo
 
 Here is a full demo of Manifest Scrapper taking in user input (the name of the manifest file) and rapidly looking up each product. 
 
