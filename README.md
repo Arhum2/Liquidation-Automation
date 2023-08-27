@@ -56,13 +56,24 @@
 
 ![Image-1](https://user-images.githubusercontent.com/82200170/188043942-de4e5a6d-9d2d-41b4-9a2a-12a8f6d65d6b.jpg)
 
-After sourcing furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE)  I realized most of my time was consumed manually by looking up and researching products in a manifest. After spending some time learning Python automation I expanded and applied my knowledge to this project. Manifest Scrapper parses through a .CSV file and looks up each product listed in a Liquidity Services manifest, 
-
+Having sourced furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE), I recognized that there was a significant time drain in manual product research of manifests. Using Python and Selenium, I extended and applied this to my business to create the Manifest Scrapper. This tool parses a .CSV file, efficiently searching and retrieving details for each product listed in Liquidity Services manifests. Reducing the processing time per manifest from 15 minutes to just 1 minute.
 
 ### Here's why I created this project:
 * Improved product research and data compiling allowing for less time to be invested with the same return
 * You shouldn't be doing the same tasks over and over
 * implements DRY principles to my business
+
+## Usage
+
+Here is a full demo of Manifest Scrapper taking in user input (the name of the manifest file) and rapidly looking up each product. 
+
+
+https://user-images.githubusercontent.com/82200170/187813623-06efb504-6ee3-4f81-b96d-9f58791b8004.mp4 
+<p align="right">(<a href="#readme-top">back to top</a>) </p>
+
+<h3>Step 2</h3>
+
+Having sourced furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE), I recognized that there was a significant time drain in manual product research of manifests. Using Python and Selenium, I extended and applied this to my business to create the Manifest Scrapper. This tool parses a .CSV file, efficiently searching and retrieving details for each product listed in Liquidity Services manifests. Reducing the processing time per manifest from 15 minutes to just 1 minute.
 
 
 ## Usage
