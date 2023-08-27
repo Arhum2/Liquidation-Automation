@@ -57,13 +57,17 @@
 * You shouldn't be doing the same tasks over and over
 * implements DRY principles to my business
 
+<h3> Heres a visualization of the listing lifecycle</h3>
+
+![Flowchart](https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/8f1e52af-804d-4b06-8cda-356a2af95d15)
+
 ## Step 1, Sourcing
 
 Having sourced furniture from [Liquadation.com](https://www.liquidation.com/index?gclid=CjwKCAjwnrjrBRAMEiwAXsCc40uSxzQCMHP_9XwiY_rmfUpJ4WB1EDi4zOMVMNMTv_jmsZp39XRB5xoCpfIQAvD_BwE), I recognized that there was a significant time drain in manual product research of manifests. Using Python and Selenium, I extended and applied this to my business to create the Manifest Scrapper. This tool parses a .CSV file, efficiently searching and retrieving details for each product listed in Liquidity Services manifests. Reducing the processing time per manifest from 15 minutes to just 1 minute.
 
 
 
-## Usage
+## Demo
 
 Here is a full demo of Manifest Scrapper taking in user input (the name of the manifest file) and rapidly looking up each product. 
 
@@ -73,7 +77,7 @@ https://user-images.githubusercontent.com/82200170/187813623-06efb504-6ee3-4f81-
 
 ## Step 2, Positing listings
 
-
+Next, the listings are posted to Kijiji and Facebook Marketplace 
 
 https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/12002e3e-f338-438d-8569-1919513fc0a8
 
@@ -83,11 +87,7 @@ https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/32907b5b-e31e-4eb4-9
 
 
 
-
-
-
-<p align="right">(<a href="#readme-top">back to top</a>) </p>
-
+## Step 3, 
 
 <!-- CONTRIBUTING -->
 ## Contributing
