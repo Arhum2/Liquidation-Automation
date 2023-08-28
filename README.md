@@ -7,7 +7,7 @@
   ![Flowchart](https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/24995d83-fabc-4056-aa09-5cde9f903417)
 
   <p align="center">
-    By Arhum Shahzad
+    <h3>By Arhum Shahzad</h3>
     <br />
     <br />
     <a>
@@ -65,11 +65,10 @@ Here is a full demo of Manifest Scrapper taking in user input (the name of the m
 
 
 https://user-images.githubusercontent.com/82200170/187813623-06efb504-6ee3-4f81-b96d-9f58791b8004.mp4 
-<p align="right">(<a href="#readme-top">back to top</a>) </p>
 
 ## Step 2, Positing listings
 
-Next, the listings are posted to Kijiji and Facebook Marketplace 
+Prior to implementing this project, the process of gathering data and publishing listings consumed 120 minutes. However, the program's remarkable efficiency has resulted in a staggering 95% reduction in task duration, now requiring a mere 5 minutes and practically no human input.
 
 https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/12002e3e-f338-438d-8569-1919513fc0a8
 
@@ -81,6 +80,7 @@ https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/32907b5b-e31e-4eb4-9
 
 ## Step 3, Instagram updates
 
+Many of my customers wanted to be kept up to date about my inventory, yet the manual task of individually posting each item on Instagram proved to be quite labor-intensive. Thanks to this program, I am now able to uphold a consistent brand presence and effortlessly keep my customers updated on social media regarding new additions to the inventory. 
 
 https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/a1e2a3b4-334c-4dc7-95bd-c77873a0957b
 
