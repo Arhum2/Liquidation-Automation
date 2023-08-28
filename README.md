@@ -16,7 +16,7 @@
 </a>
     <br />
     <br />
-    <a href="#usage">View Scrapper Demo</a>
+    <a href="#step-1-sourcing">View Demo</a>
     ·
     <a href="https://github.com/Arhum2/Manifest-Scrapper/issues">Report Bug</a>
     ·
@@ -80,7 +80,11 @@ https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/32907b5b-e31e-4eb4-9
 
 
 ## Step 3, Instagram updates
-##TODO
+
+
+https://github.com/Arhum2/Manifest-Scrapper/assets/82200170/a1e2a3b4-334c-4dc7-95bd-c77873a0957b
+
+
 
 <!-- CONTRIBUTING -->
 ## Contributing
