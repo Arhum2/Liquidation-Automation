@@ -69,6 +69,7 @@ class Automate_add_post:
         self.tags = '//*[@id=":r1e:"]'
         self.tags2 = '//*[@id=":r1f:"]'
         self.done = '//span[text()="Save draft"]'
+        self.more = '//span[text()="More Details"]'
 
     def get_info(self) -> dict:
 
@@ -102,18 +103,80 @@ class Automate_add_post:
     def automate(self):
         self.browser.get(self.post)
 
+
+
+        #Filling text fields py auto gui can be used here to avoid try blocks but this is easier and more spohisticated in the long run
+
+        info = self.get_info()
+
+        try:
+            try:
+                self.title_button = self.browser.find_element(By.XPATH, (self.title_button))
+                try:
+                    self.title_button.send_keys(info['Title'])
+                except ElementNotInteractableException:
+                    self.title_button = self.browser.find_element(By.XPATH, (self.title_button2))
+                    self.title_button.send_keys(info['Title'])
+                    gate = True
+                    
+             # All else fails then use pyautogui       
+            except:
+                pyautogui.moveTo(50, 750)
+                pyautogui.click()
+                pyautogui.write(info['Title'])
+        
+                
+        except NoSuchElementException:
+            self.title_button = self.browser.find_element(By.XPATH, (self.title_button3))
+            self.title_button.send_keys(info['Title'])
+
+        try:
+            try:
+                self.price_button = self.browser.find_element(By.XPATH, (self.price_button))
+                self.price_button.send_keys(info['Price'])
+
+            except NoSuchElementException:
+                self.price_button = self.browser.find_element(By.XPATH, (self.price_button2))
+                self.price_button.send_keys(info['Price'])
+        except:
+            pyautogui.moveTo(50, 830)
+            pyautogui.click()
+            pyautogui.write(info['Price'])
+
+
         #Filling photo field
         self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
-        self.photo_button.click()
 
         #mutating directory
         photo_directory = self.file_dir.strip('.')
         photo_directory = photo_directory + '\\photo'
+        
+        if self.more:
+            try:
+                self.more = self.browser.find_element(By.XPATH, (self.more))
+                self.more.click()
+            except:
+                pass
 
+        try:
+            self.description = self.browser.find_element(By.XPATH, (self.description))
+            self.description.click()
+            self.description.send_keys(info['Description'])
+        
+        except: 
+            try:
+                self.description = self.browser.find_element(By.XPATH, (self.description2))
+                self.description.click()
+                self.description.send_keys(info['Description'])
+            except:
+                pyautogui.moveTo(50, 1500)
+                pyautogui.click()
+                pyautogui.write(info['Description'])
         #navigating to photo folder and uploading all photos
         # pyautogui.write(self.abs_path)
         # sleep(2)
         # pyautogui.press('enter')
+        self.photo_button.click()
         sleep(2)
         pyautogui.write('G:\\My Drive\\selling\\not posted')
         sleep(2)
@@ -129,43 +192,17 @@ class Automate_add_post:
         pyautogui.press('enter')
         sleep(2)
 
-        #Filling text fields py auto gui can be used here to avoid try blocks but this is easier and more spohisticated in the long run
-
-        info = self.get_info()
-
-        try:
-            try:
-                self.title_button = self.browser.find_element(By.XPATH, (self.title_button))
-                self.title_button.send_keys(info['Title'])
-                gate = True
-        
-            except NoSuchElementException:
-                self.title_button = self.browser.find_element(By.XPATH, (self.title_button2))
-                self.title_button.send_keys(info['Title'])
-                gate = True
-        
-        except NoSuchElementException:
-            self.title_button = self.browser.find_element(By.XPATH, (self.title_button3))
-            self.title_button.send_keys(info['Title'])
-
-            
-
-        try:
-            self.price_button = self.browser.find_element(By.XPATH, (self.price_button))
-            self.price_button.send_keys(info['Price'])
-        
-        except NoSuchElementException:
-            self.price_button = self.browser.find_element(By.XPATH, (self.price_button2))
-            self.price_button.send_keys(info['Price'])
-
         #Drop down properties
         try:
             self.category_drop = self.browser.find_element(By.XPATH, self.category_drop).click() #reassigning selfs vars to the found element, probably not gonna be used again but good to have
             self.category_furniture = self.browser.find_element(By.XPATH, self.category_furniture).click()
         
         except NoSuchElementException:
-            self.category_drop = self.browser.find_element(By.XPATH, self.category_drop2).click()
-            self.category_furniture = self.browser.find_element(By.XPATH, self.category_furniture).click()
+            try:
+                self.category_drop = self.browser.find_element(By.XPATH, self.category_drop2).click()
+                self.category_furniture = self.browser.find_element(By.XPATH, self.category_furniture).click()
+            except:
+                pass
 
         try:
             self.condition_drop = self.browser.find_element(By.XPATH, self.condition_drop).click()
@@ -174,12 +211,17 @@ class Automate_add_post:
             except:
                 self.condition_new = self.browser.find_element(By.XPATH, self.condition_new2).click()
         except:
-            self.condition_drop = self.browser.find_element(By.XPATH, self.condition_drop2).click()
+            try:
+                self.condition_drop = self.browser.find_element(By.XPATH, self.condition_drop2).click()
+            except:
+                pass
             try:
                 self.condition_new = self.browser.find_element(By.XPATH, self.condition_new).click()
             except:
-                self.condition_new = self.browser.find_element(By.XPATH, self.condition_new2).click()
-                
+                try:
+                    self.condition_new = self.browser.find_element(By.XPATH, self.condition_new2).click()
+                except:
+                    pass
         try:
             try:
                 self.brand = self.browser.find_element(By.XPATH, self.brand)
@@ -208,15 +250,6 @@ class Automate_add_post:
             except NoSuchElementException:
                 pass
 
-        try:
-            self.description = self.browser.find_element(By.XPATH, (self.description))
-            self.description.click()
-            self.description.send_keys(info['Description'])
-        
-        except ElementNotInteractableException: 
-            self.description = self.browser.find_element(By.XPATH, (self.description2))
-            self.description.click()
-            self.description.send_keys(info['Description'])
 
         try:
             self.tags = self.browser.find_element(By.XPATH, (self.tags))
@@ -224,9 +257,12 @@ class Automate_add_post:
         except NoSuchElementException:
             self.tags = self.browser.find_element(By.XPATH, (self.tags2))
 
-        for tag in info['Tags']:
-            self.tags.send_keys(tag)
-            self.tags.send_keys(Keys.ENTER)
+        try:
+            for tag in info['Tags']:
+                self.tags.send_keys(tag)
+                self.tags.send_keys(Keys.ENTER)
+        except:
+            pass
 
         self.done = self.browser.find_element(By.XPATH, (self.done))
         self.done.click()
@@ -240,6 +276,9 @@ for i in range(number_of_adds):
     testing = f'{os.curdir}\{curr_file}'
     a = Automate_add_post(f'{os.curdir}{curr_file}')
     a.automate()
+    print(f'POSTED {curr_file}')
     sleep(1)
     shutil.move('G:\\My Drive\\selling\\not posted\\' + curr_file, 'G:\\My Drive\\selling\\posted')
     i += 1
+
+print("TASK COMPLETED")
