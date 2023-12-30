@@ -102,13 +102,16 @@ class Automate_add_post:
     
     def automate(self):
         self.browser.get(self.post)
+        sleep(3)
 
 
 
-        #Filling text fields py auto gui can be used here to avoid try blocks but this is easier and more spohisticated in the long run
+        #Filling text fields
 
         info = self.get_info()
 
+
+    # === TITLE ===
         try:
             try:
                 self.title_button = self.browser.find_element(By.XPATH, (self.title_button))
@@ -130,6 +133,7 @@ class Automate_add_post:
             self.title_button = self.browser.find_element(By.XPATH, (self.title_button3))
             self.title_button.send_keys(info['Title'])
 
+    # === PRICE ===
         try:
             try:
                 self.price_button = self.browser.find_element(By.XPATH, (self.price_button))
@@ -144,34 +148,84 @@ class Automate_add_post:
             pyautogui.write(info['Price'])
 
 
-        #Filling photo field
-        self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
-
-        #mutating directory
-        photo_directory = self.file_dir.strip('.')
-        photo_directory = photo_directory + '\\photo'
         
-        if self.more:
-            try:
-                self.more = self.browser.find_element(By.XPATH, (self.more))
-                self.more.click()
-            except:
-                pass
+    # === DESCRIPTION ===
 
         try:
             self.description = self.browser.find_element(By.XPATH, (self.description))
             self.description.click()
             self.description.send_keys(info['Description'])
+            gate = True
         
         except: 
             try:
                 self.description = self.browser.find_element(By.XPATH, (self.description2))
                 self.description.click()
                 self.description.send_keys(info['Description'])
+                gate = True
             except:
-                pyautogui.moveTo(50, 1500)
+                pyautogui.moveTo(50, 1250)
+                sleep(1)
                 pyautogui.click()
                 pyautogui.write(info['Description'])
+                gate = True
+        
+        if not gate:
+            pyautogui.moveTo(50, 1200)
+            pyautogui.click()
+            pyautogui.write(info['Description'])
+            gate = True
+
+# === CATEGORY & CONDITION ===
+        try:
+            self.category_drop = self.browser.find_element(By.XPATH, self.category_drop).click() #reassigning selfs vars to the found element, probably not gonna be used again but good to have
+            self.category_furniture = self.browser.find_element(By.XPATH, self.category_furniture).click()
+        
+        except NoSuchElementException:
+            try:
+                self.category_drop = self.browser.find_element(By.XPATH, self.category_drop2).click()
+                self.category_furniture = self.browser.find_element(By.XPATH, self.category_furniture).click()
+            except:
+                pyautogui.moveTo(50, 850)
+                pyautogui.scroll(1000)
+                sleep(1)
+                pyautogui.moveTo(50, 900)
+                sleep(1)
+                pyautogui.click()
+                pyautogui.moveTo(50, 1100)
+                sleep(1)
+                pyautogui.click()
+
+
+        try:
+            self.condition_drop = self.browser.find_element(By.XPATH, self.condition_drop).click()
+            try:
+                self.condition_new = self.browser.find_element(By.XPATH, self.condition_new).click()
+            except:
+                self.condition_new = self.browser.find_element(By.XPATH, self.condition_new2).click()
+        except:
+            try:
+                self.condition_drop = self.browser.find_element(By.XPATH, self.condition_drop2).click()
+            except:
+                pass
+            try:
+                self.condition_new = self.browser.find_element(By.XPATH, self.condition_new).click()
+            except:
+                try:
+                    self.condition_new = self.browser.find_element(By.XPATH, self.condition_new2).click()
+                except:
+                    pyautogui.moveTo(50, 1000)
+                    pyautogui.click()
+                    sleep(1)
+                    pyautogui.moveTo(50, 1050)
+                    sleep(1)
+                    pyautogui.click()
+
+        # === PHOTOS ===
+        photo_directory = self.file_dir.strip('.')
+        photo_directory = photo_directory + '\\photo'               
+        #Filling photo field
+        self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
         #navigating to photo folder and uploading all photos
         # pyautogui.write(self.abs_path)
         # sleep(2)
@@ -191,79 +245,55 @@ class Automate_add_post:
         pyautogui.hotkey('ctrl', 'a')
         pyautogui.press('enter')
         sleep(2)
-
-        #Drop down properties
-        try:
-            self.category_drop = self.browser.find_element(By.XPATH, self.category_drop).click() #reassigning selfs vars to the found element, probably not gonna be used again but good to have
-            self.category_furniture = self.browser.find_element(By.XPATH, self.category_furniture).click()
         
-        except NoSuchElementException:
-            try:
-                self.category_drop = self.browser.find_element(By.XPATH, self.category_drop2).click()
-                self.category_furniture = self.browser.find_element(By.XPATH, self.category_furniture).click()
-            except:
-                pass
-
-        try:
-            self.condition_drop = self.browser.find_element(By.XPATH, self.condition_drop).click()
-            try:
-                self.condition_new = self.browser.find_element(By.XPATH, self.condition_new).click()
-            except:
-                self.condition_new = self.browser.find_element(By.XPATH, self.condition_new2).click()
-        except:
-            try:
-                self.condition_drop = self.browser.find_element(By.XPATH, self.condition_drop2).click()
-            except:
-                pass
-            try:
-                self.condition_new = self.browser.find_element(By.XPATH, self.condition_new).click()
-            except:
-                try:
-                    self.condition_new = self.browser.find_element(By.XPATH, self.condition_new2).click()
-                except:
-                    pass
-        try:
-            try:
-                self.brand = self.browser.find_element(By.XPATH, self.brand)
-                self.brand.send_keys(info['Brand'])
-            except:
-                try:
-                    self.brand = self.browser.find_element(By.XPATH, self.brand2)
-                    self.brand.send_keys(info['Brand'])
+        # # === BRAND ===
+        # try:
+        #     try:
+        #         self.brand = self.browser.find_element(By.XPATH, self.brand)
+        #         self.brand.send_keys(info['Brand'])
+        #     except:
+        #         try:
+        #             self.brand = self.browser.find_element(By.XPATH, self.brand2)
+        #             self.brand.send_keys(info['Brand'])
                 
-                except NoSuchElementException:
-                    pass
+        #         except NoSuchElementException:
+        #             pass
         
-        except:
-            pass
-
-        if info['Color']: #Bandaid fix
-            try:
-                try:
-                    self.color = self.browser.find_element(By.XPATH, (self.color))
-                    self.color.send_keys(info['Color'])
+        # except:
+        #     pass
+        
+        # # === COLOR ===
+        # if info['Color']: #Bandaid fix
+        #     try:
+        #         try:
+        #             self.color = self.browser.find_element(By.XPATH, (self.color))
+        #             self.color.send_keys(info['Color'])
                 
-                except:
-                    self.color = self.browser.find_element(By.XPATH, (self.color2))
-                    self.color.send_keys(info['Color'])
+        #         except:
+        #             self.color = self.browser.find_element(By.XPATH, (self.color2))
+        #             self.color.send_keys(info['Color'])
             
-            except NoSuchElementException:
-                pass
+        #     except NoSuchElementException:
+        #         pass
 
 
-        try:
-            self.tags = self.browser.find_element(By.XPATH, (self.tags))
+        # try:
+        #     self.tags = self.browser.find_element(By.XPATH, (self.tags))
         
-        except NoSuchElementException:
-            self.tags = self.browser.find_element(By.XPATH, (self.tags2))
+        # except NoSuchElementException:
+        #     try:
+        #         self.tags = self.browser.find_element(By.XPATH, (self.tags2))
+        #     except:
+        #         pass
 
-        try:
-            for tag in info['Tags']:
-                self.tags.send_keys(tag)
-                self.tags.send_keys(Keys.ENTER)
-        except:
-            pass
+        # try:
+        #     for tag in info['Tags']:
+        #         self.tags.send_keys(tag)
+        #         self.tags.send_keys(Keys.ENTER)
+        # except:
+        #     pass
 
+        sleep(7)
         self.done = self.browser.find_element(By.XPATH, (self.done))
         self.done.click()
 
