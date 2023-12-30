@@ -102,6 +102,7 @@ class Automate_add_post:
     
     def automate(self):
         self.browser.get(self.post)
+        sleep(3)
 
 
 
@@ -149,16 +150,6 @@ class Automate_add_post:
 
         
     # === DESCRIPTION ===
-        gate = False
-        x = input('press ''y'' to continue\n')
-        if x == 'y':
-            try:
-                self.more = self.browser.find_element(By.XPATH, (self.more))
-                self.more.click()
-            except:
-                pass
-        else:
-            pass
 
         try:
             self.description = self.browser.find_element(By.XPATH, (self.description))
@@ -173,7 +164,8 @@ class Automate_add_post:
                 self.description.send_keys(info['Description'])
                 gate = True
             except:
-                pyautogui.moveTo(50, 1200)
+                pyautogui.moveTo(50, 1250)
+                sleep(1)
                 pyautogui.click()
                 pyautogui.write(info['Description'])
                 gate = True
@@ -195,8 +187,14 @@ class Automate_add_post:
                 self.category_furniture = self.browser.find_element(By.XPATH, self.category_furniture).click()
             except:
                 pyautogui.moveTo(50, 850)
-                pyautogui.click()
+                pyautogui.scroll(1000)
+                sleep(1)
                 pyautogui.moveTo(50, 900)
+                sleep(1)
+                pyautogui.click()
+                pyautogui.moveTo(50, 1100)
+                sleep(1)
+                pyautogui.click()
 
 
         try:
@@ -216,9 +214,11 @@ class Automate_add_post:
                 try:
                     self.condition_new = self.browser.find_element(By.XPATH, self.condition_new2).click()
                 except:
-                    pyautogui.moveTo(50, 900)
+                    pyautogui.moveTo(50, 1000)
                     pyautogui.click()
-                    pyautogui.moveTo(50, 950)
+                    sleep(1)
+                    pyautogui.moveTo(50, 1050)
+                    sleep(1)
                     pyautogui.click()
 
         # === PHOTOS ===
@@ -246,55 +246,55 @@ class Automate_add_post:
         pyautogui.press('enter')
         sleep(2)
         
-        # === BRAND ===
-        try:
-            try:
-                self.brand = self.browser.find_element(By.XPATH, self.brand)
-                self.brand.send_keys(info['Brand'])
-            except:
-                try:
-                    self.brand = self.browser.find_element(By.XPATH, self.brand2)
-                    self.brand.send_keys(info['Brand'])
+        # # === BRAND ===
+        # try:
+        #     try:
+        #         self.brand = self.browser.find_element(By.XPATH, self.brand)
+        #         self.brand.send_keys(info['Brand'])
+        #     except:
+        #         try:
+        #             self.brand = self.browser.find_element(By.XPATH, self.brand2)
+        #             self.brand.send_keys(info['Brand'])
                 
-                except NoSuchElementException:
-                    pass
+        #         except NoSuchElementException:
+        #             pass
         
-        except:
-            pass
+        # except:
+        #     pass
         
-        # === COLOR ===
-        if info['Color']: #Bandaid fix
-            try:
-                try:
-                    self.color = self.browser.find_element(By.XPATH, (self.color))
-                    self.color.send_keys(info['Color'])
+        # # === COLOR ===
+        # if info['Color']: #Bandaid fix
+        #     try:
+        #         try:
+        #             self.color = self.browser.find_element(By.XPATH, (self.color))
+        #             self.color.send_keys(info['Color'])
                 
-                except:
-                    self.color = self.browser.find_element(By.XPATH, (self.color2))
-                    self.color.send_keys(info['Color'])
+        #         except:
+        #             self.color = self.browser.find_element(By.XPATH, (self.color2))
+        #             self.color.send_keys(info['Color'])
             
-            except NoSuchElementException:
-                pass
+        #     except NoSuchElementException:
+        #         pass
 
 
-        try:
-            self.tags = self.browser.find_element(By.XPATH, (self.tags))
+        # try:
+        #     self.tags = self.browser.find_element(By.XPATH, (self.tags))
         
-        except NoSuchElementException:
-            try:
-                self.tags = self.browser.find_element(By.XPATH, (self.tags2))
-            except:
-                pass
+        # except NoSuchElementException:
+        #     try:
+        #         self.tags = self.browser.find_element(By.XPATH, (self.tags2))
+        #     except:
+        #         pass
 
-        try:
-            for tag in info['Tags']:
-                self.tags.send_keys(tag)
-                self.tags.send_keys(Keys.ENTER)
-        except:
-            pass
+        # try:
+        #     for tag in info['Tags']:
+        #         self.tags.send_keys(tag)
+        #         self.tags.send_keys(Keys.ENTER)
+        # except:
+        #     pass
 
+        sleep(7)
         self.done = self.browser.find_element(By.XPATH, (self.done))
-        sleep(2)
         self.done.click()
 
         self.browser.close()
