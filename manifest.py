@@ -3,11 +3,13 @@ import sys
 import pyperclip
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+import time
 
-PATH = 'C:\\Users\\pokem\\Desktop'
+PATH = 'C:\\Program Files (x86)\\chromedriver.exe'
 
-driver_service = Service(executable_path=PATH)
-browser = webdriver.Chrome(service=driver_service)# check for command line arguments
+service = webdriver.ChromeService(executable_path=PATH) 
+#Service(executable_path=PATH)
+browser = webdriver.Chrome(service=service)# check for command line arguments
 
 if len(sys.argv) > 1:
     file_name = ''.join(sys.argv[1:]) + ".csv"
@@ -36,10 +38,8 @@ with open(f"{file}", 'r') as product_list:
 
 length = len(items)
 
-i = 0
-while i <= length:
-    browser.get('https://www.google.com/search?q=' + f"{items[i]}")
-    i = i + 1
+for item in items:
+    browser.get('https://www.google.com/search?q=' + f"{item}")
     browser.switch_to.new_window()
-    if i == items:
-        break
+
+time.sleep(9999)
