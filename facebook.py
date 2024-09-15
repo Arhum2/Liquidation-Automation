@@ -45,6 +45,7 @@ class Automate_add_post:
         self.post = 'https://www.facebook.com/marketplace/create/item'
         self.file_dir = c_file
         self.photo_button = "//span[text()='Add Photos']"
+        
         self.done = '//span[text()="Save draft"]'
 
 
@@ -99,15 +100,15 @@ class Automate_add_post:
 
         pyautogui.moveTo(50, 930)
         pyautogui.click()
-        sleep(1)
+        sleep(2)
         pyautogui.moveTo(50, 1100)
-        sleep(1)
+        sleep(2)
         pyautogui.click()
         pyautogui.moveTo(50, 1000)
-        sleep(1)
+        sleep(2)
         pyautogui.click()
-        sleep(1)
-        pyautogui.moveTo(50, 1100)
+        sleep(2)
+        pyautogui.moveTo(50, 1060)
         pyautogui.click()
       
     # === DESCRIPTION ===
@@ -115,24 +116,34 @@ class Automate_add_post:
         pyautogui.click()
         pyautogui.write(info['Description'])
 
+        sleep(15)
+
         # === PHOTOS ===
         photo_directory = self.file_dir.strip('.')
         photo_directory = photo_directory + '\\photo'               
         #Filling photo field
-        self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
-        #navigating to photo folder and uploading all photos
+        try:
+            self.photo_button = self.browser.find_element(By.XPATH, (self.photo_button))
+            self.photo_button.click()        
+
+        except:
+            pyautogui.moveTo(120, 500)
+            pyautogui.click()
+                
+                
+        #
+        # navigating to photo folder and uploading all photos
         # pyautogui.write(self.abs_path)
         # sleep(2)
         # pyautogui.press('enter')
-        self.photo_button.click()
         sleep(2)
-        pyautogui.write('G:\\My Drive\\selling\\not posted')
-        sleep(2)
-        pyautogui.press('enter')
-        sleep(2)
-        pyautogui.write(photo_directory)
+        pyautogui.write('G:\\My Drive\\selling\\not posted\\' + photo_directory)
         sleep(2)
         pyautogui.press('enter')
+        sleep(2)
+        # pyautogui.write(photo_directory)
+        # sleep(2)
+        # pyautogui.press('enter')
         sleep(2)
         pyautogui.moveTo(300, 200)
         pyautogui.click()
@@ -151,12 +162,11 @@ class Automate_add_post:
 
 for i in range(number_of_adds):
     curr_file = ads[i]
-    testing = f'{os.curdir}\{curr_file}'
     a = Automate_add_post(f'{os.curdir}{curr_file}')
     a.automate()
     print(f'POSTED {curr_file}')
     sleep(1)
-    shutil.move('G:\\My Drive\\selling\\not posted\\' + curr_file, 'G:\\My Drive\\selling\\posted')
+    shutil.move('G:\\My Drive\\selling\\not posted\\' + curr_file, 'G:\\My Drive\\selling\\instagram not posted\\')
     i += 1
 
 print("TASK COMPLETED")
