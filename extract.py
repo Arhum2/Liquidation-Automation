@@ -1,3 +1,4 @@
+import re
 import requests
 from PIL import Image
 from io import BytesIO
@@ -22,15 +23,35 @@ headers = {
 }
 
 # Test link TODO: grab link from clipboard
-r = requests.get('https://www.wayfair.ca/furniture/pdp/lark-manor-ameire-upholstered-bed-c100532233.html?piid=1199737998%2C1199738226', headers=headers)
+r = requests.get('https://www.wayfair.ca/furniture/pdp/lark-manor-hilbert-upholstered-low-profile-platform-bed-frame-with-headboard-c011005079.html?piid=2081062955%2C2081158349', headers=headers)
 
 
 soup = BeautifulSoup(r.text, 'html.parser')
-# print(soup.prettify())
 
+# def get_english_text(soup):
+#     tags_to_keep = {'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head'} 
 
-response = ollama.chat(model='llama3.1', 
-                       messages=[{'role': 'user', 'content': 'Extract the product description and key details form this text'}, 
-                                 {'role': 'assistant', 'content': r.text}])
+#     english_text = ""
 
-print(response)
+#     for tag in soup.findAll(True):
+#         if tag.text != '':
+#             if tag.name in tags_to_keep:
+#                 english_text += " ".join([word.strip() for word in tag.text.split() if is_english(word)]) 
+
+#     return english_text
+
+# def is_english(word):
+#     return re.match(r'^[a-zA-Z0-9_]*$', word)
+
+# english_text = get_english_text(soup)
+# #print(english_text)
+
+prompt = "Take this piece of text that I extracted from a furniture listing. Extract all the key details and return only the extracted product description and nothing else. remove all new line characters. here is the text:" + soup.text
+
+response = ollama.chat(model='llama3.1', messages=[{
+    'role': 'user',
+    'content': prompt,
+},
+])
+
+print(response['message'])
